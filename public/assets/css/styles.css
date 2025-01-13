@@ -1,0 +1,232 @@
+:root {
+  --background-light: #ffffff;
+  --text-light: #14171a;
+  --header-background-light: #f6d1a8;
+  --form-background-light: #fff;
+  --input-background-light: #ffffff;
+  --primary-color-light: #f6d1a8;
+  --secondary-color-light: #a17979;
+}
+[data-theme="dark"] {
+  --background-dark: #1e1d1d;
+  --text-dark: #f5f8fa;
+  --header-background-dark: #0c0c0c;
+  --form-background-dark: #241b1b;
+  --input-background-dark: #5757577e;
+  --primary-color-dark: #518db3;
+  --secondary-color-dark: #979797;
+}
+
+body{
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-light);
+  color: var(--text-light);
+  transition: background 0.5s, color 0.5s;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+[data-theme="dark"] body {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}
+
+.header {
+  background-color: var(--header-background-light);
+  color: #ffffff;
+  padding: 10px 5px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+[data-theme="dark"] .header {
+  background-color: var(--header-background-dark);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.settings-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.theme-button,
+#theme-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+
+.theme-button:focus,
+#theme-button:focus {
+  outline: none;
+}
+
+#theme-button:hover {
+  color: var(--secondary-color-light);
+}
+
+[data-theme="dark"] #theme-button:hover {
+  color: var(--secondary-color-dark);
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  margin-top: 70px; /* Adjust for fixed header */
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hero h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: var(--primary-color-light);
+}
+
+[data-theme="dark"] .hero h2 {
+  color: var(--primary-color-dark);
+}
+
+.hero p {
+  font-size: 1.2em;
+  color: var(--secondary-color-light);
+}
+
+[data-theme="dark"] .hero p {
+  color: var(--secondary-color-dark);
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  min-width: 300px;
+}
+
+#form-container {
+  background-color: var(--form-background-light);
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] #form-container {
+  background-color: var(--form-background-dark);
+}
+
+form h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--primary-color-light);
+  text-align: center;
+  font-size: 1.5em;
+}
+
+[data-theme="dark"] form h2 {
+  color: var(--primary-color-dark);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: var(--input-background-light);
+  color: var(--text-light);
+  box-sizing: border-box;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea {
+  background-color: var(--input-background-dark);
+  color: var(--text-dark);
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary-color-light);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+[data-theme="dark"] button {
+  background-color: var(--primary-color-dark);
+}
+
+button:hover {
+  background-color: var(--secondary-color-light);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] button:hover {
+  background-color: var(--secondary-color-dark);
+}
+
+p {
+  text-align: center;
+  color: var(--secondary-color-light);
+}
+
+[data-theme="dark"] p {
+  color: var(--secondary-color-dark);
+}
+
+a {
+  color: var(--primary-color-light);
+  text-decoration: none;
+}
+
+[data-theme="dark"] a {
+  color: var(--primary-color-dark);
+}
+[data-theme="dark"] body {
+  background-color: var(--background-dark);
+}
+a:hover {
+  text-decoration: underline;
+}
