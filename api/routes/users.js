@@ -1,8 +1,8 @@
 const express = require('express');
+const userController = require('../controllers/userController'); // Correct import path
 const router = express.Router();
-const usersController = require('../controllers/usersController');
 
-router.post('/register', usersController.registerUser);
-router.post('/login', usersController.loginUser);
+router.post('/register', userController.register);
+router.post('/login', userController.login);
 
 module.exports = router;

@@ -10,11 +10,20 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin: ['http://cassaint.com', 'https://cassaint.com'],  // Allow requests from both http and https
+  origin: ['http://cassaint.com', 'https://cassaint.com'],
   methods: ['GET', 'POST', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Custom-Header']
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/posts', postRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api/users', userRoutes); // Ensure this is correct
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}/`);
+});
+  
