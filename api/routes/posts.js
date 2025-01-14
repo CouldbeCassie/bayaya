@@ -3,10 +3,8 @@ const router = express.Router();
 
 let posts = [];
 
-// Route to get all posts
 router.get('/', (req, res) => {
   try {
-    console.log('Attempting to load posts...');
     res.json(posts);
   } catch (err) {
     console.error('Error loading posts:', err);
@@ -14,16 +12,38 @@ router.get('/', (req, res) => {
   }
 });
 
-// Route to create a new post
 router.post('/', (req, res) => {
   try {
-    const { title, content } = req.body;
-    const newPost = { id: posts.length + 1, title, content };
+    const { username, content } = req.body;
+    const newPost = { username, content, timestamp: new Date().toISOString(), _id: Date.now().toString(), likes: 0, dislikes: 0 };
     posts.push(newPost);
-    res.status(201).json(newPost);
+    res.status(201).json({ message: 'Post created!', post: newPost });
   } catch (err) {
     console.error('Error creating post:', err);
     res.status(500).json({ message: 'Failed to create post' });
+  }
+});
+
+router.patch('/:id', (req, res) => {
+  try {
+    const { id } = req.params;
+    const { action } = req.body;
+    const post = posts.find(post => post._id === id);
+    if (post) {
+      if (action === 'like') {
+        post.likes = post.likes || 0;
+        post.likes += 1;
+      } else if (action === 'dislike') {
+        post.dislikes = post.dislikes || 0;
+        post.dislikes += 1;
+      }
+      res.status(200).json({ message: 'Post updated!', post });
+    } else {
+      res.status(404).json({ message: 'Post not found' });
+    }
+  } catch (err) {
+    console.error('Error updating post:', err);
+    res.status(500).json({ message: 'Failed to update post' });
   }
 });
 
