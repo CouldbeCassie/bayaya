@@ -10,7 +10,7 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'http://cassaint.com',
+  origin: ['http://cassaint.com', 'https://cassaint.com'],  // Allow requests from both http and https
   methods: ['GET', 'POST', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Custom-Header']
 }));
