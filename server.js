@@ -20,7 +20,7 @@ app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes); // Ensure this is correct
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(port, () => {

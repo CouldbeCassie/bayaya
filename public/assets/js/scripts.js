@@ -158,8 +158,8 @@ async function loadPosts() {
                 
                 <p><small>${new Date(post.timestamp).toLocaleString()}</small></p>
                 
-                <p><strong>${post.username}</strong>: ${post.content}</p>
-                
+                <p><strong>${post.username}:</strong>${post.content}</p>
+            
                 <button class="like-button" data-id="${post._id}" data-action="like"><i class="fas fa-thumbs-up"></i></button>
                 
                 <span class="like-count">${post.likes}</span><button class="dislike-button" data-id="${post._id}" data-action="dislike"><i class="fas fa-thumbs-down"></i></button>
