@@ -18,23 +18,46 @@ app.use(cors({
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/posts', postRoutes);
-app.use('/api/users', userRoutes); // Ensure this is correct
+app.use('/api/users', userRoutes);
 
-app.post('/login', async (req, res) => {
+app.get('/api/users', async (req, res) => {
     try {
-        const response = await axios.post('http://your-php-server-url/php/login.php', req.body);
-        res.send(response.data);
+        // Replace with actual logic to fetch user data, e.g., from a database
+        const user = {
+            username: 'john_doe',
+            createdAt: '2023-01-15T09:41:00Z'
+        };
+        res.json(user);
     } catch (error) {
-        res.status(500).send('Error logging in');
+        res.status(500).json({ message: 'Failed to fetch user data' });
     }
 });
 
-app.post('/register', async (req, res) => {
+app.post('/api/users/register', async (req, res) => {
     try {
-        const response = await axios.post('http://your-php-server-url/php/register.php', req.body);
-        res.send(response.data);
+        const { username, password } = req.body;
+        // Replace with actual logic to register a user, e.g., saving to a database
+        const newUser = {
+            username,
+            createdAt: new Date().toISOString()
+        };
+        res.status(201).json({ user: newUser });
     } catch (error) {
-        res.status(500).send('Error registering');
+        res.status(500).json({ message: 'Failed to register user' });
+    }
+});
+
+app.post('/api/users/login', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        // Replace with actual logic to authenticate a user
+        const authenticatedUser = {
+            username,
+            createdAt: '2023-01-15T09:41:00Z'
+        };
+        res.json({ user: authenticatedUser });
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to login' });
     }
 });
 

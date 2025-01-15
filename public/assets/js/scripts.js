@@ -6,7 +6,23 @@ document.addEventListener('DOMContentLoaded', () => {
     setupDropdown();  // Ensure dropdown is set up
     setupAuthToggle();  // Setup auth form toggle
     checkAuthentication();  // Ensure user is authenticated before loading content
+    fetchAccountInfo(); // Fetch account info on load
 });
+
+async function fetchAccountInfo() {
+    try {
+        const response = await fetch(`${API_URL}/users`);
+        if (response.ok) {
+            const accountInfo = await response.json();
+            document.getElementById('username').textContent = accountInfo.username;
+            document.getElementById('created-at').textContent = new Date(accountInfo.createdAt).toLocaleDateString();
+        } else {
+            console.error('Failed to fetch account information');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 
 function checkAuthentication() {
     const user = getUser();
@@ -155,15 +171,11 @@ async function loadPosts() {
             const postElement = document.createElement('div');
             postElement.classList.add('post');
             postElement.innerHTML = `
-                
                 <p><small>${new Date(post.timestamp).toLocaleString()}</small></p>
-                
-                <p><strong>${post.username}:</strong>${post.content}</p>
-            
+                <p><strong>${post.username}:</strong> ${post.content}</p>
                 <button class="like-button" data-id="${post._id}" data-action="like"><i class="fas fa-thumbs-up"></i></button>
-                
-                <span class="like-count">${post.likes}</span><button class="dislike-button" data-id="${post._id}" data-action="dislike"><i class="fas fa-thumbs-down"></i></button>
-                
+                <span class="like-count">${post.likes}</span>
+                <button class="dislike-button" data-id="${post._id}" data-action="dislike"><i class="fas fa-thumbs-down"></i></button>
                 <span class="dislike-count">${post.dislikes}</span>
             `;
             postsContainer.appendChild(postElement);
