@@ -19,7 +19,7 @@ function checkAuthentication() {
         }
 
         if (isLoginPage) {
-            window.location.href = 'index.html'; // Redirect to home if already logged in
+            window.location.href = 'feed.html'; // Redirect to home if already logged in
         } else {
             loadPosts(); // Load posts only if user is authenticated
         }
