@@ -140,18 +140,13 @@ function signup(username, password) {
         return;
     }
 
-    // Ensure users is correctly parsed as an array
     let users = [];
     try {
         users = JSON.parse(localStorage.getItem('users')) || [];
+        if (!Array.isArray(users)) throw new Error('Users is not an array');
     } catch (error) {
         console.error('Failed to parse users from localStorage', error);
         users = [];
-    }
-
-    if (!Array.isArray(users)) {
-        alert('Failed to load users. Please try again.');
-        return;
     }
 
     if (users.find(user => user.username === username)) {
@@ -166,7 +161,16 @@ function signup(username, password) {
 }
 
 function login(username, password) {
-    const users = JSON.parse(localStorage.getItem('users')) || [];
+    let users = [];
+    try {
+        users = JSON.parse(localStorage.getItem('users')) || [];
+        if (!Array.isArray(users)) throw new Error('Users is not an array');
+    } catch (error) {
+        console.error('Failed to parse users from localStorage', error);
+        alert('Error loading users. Please try again.');
+        return;
+    }
+
     const user = users.find(user => user.username === username && user.password === password);
     if (user) {
         localStorage.setItem('currentUser', username);
