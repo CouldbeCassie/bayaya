@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Forum</title>
+    <title>PiroFrms</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
     <header>
-        
         <nav>
             <h1>PiroFrms.</h1>
             <button id="showLogin">Login</button>
@@ -40,6 +39,13 @@
         <section id="forumSection" style="display: none;">
             <h2>Create a New Post</h2>
             <form id="postForm" class="form-section">
+                <label for="category">Category:</label>
+                <select id="category" required>
+                    <option value="General">General</option>
+                    <option value="News">News</option>
+                    <option value="Discussion">Discussion</option>
+                    <option value="Question">Question</option>
+                </select>
                 <label for="title">Title:</label>
                 <input type="text" id="title" required>
                 <label for="content">Content:</label>
@@ -47,7 +53,17 @@
                 <button type="submit">Post</button>
             </form>
             <h2>Posts</h2>
-            <div id="posts"></div>
+            <label for="filterCategory">Filter by Category:</label>
+            <select id="filterCategory">
+                <option value="All">All</option>
+                <option value="General">General</option>
+                <option value="News">News</option>
+                <option value="Discussion">Discussion</option>
+                <option value="Question">Question</option>
+            </select>
+            <div class="flex">
+                <div class="timeline" id="posts"></div>
+            </div>
         </section>
     </main>
     <script src="assets/js/scripts.js"></script>

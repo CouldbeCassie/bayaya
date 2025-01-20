@@ -33,11 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const title = document.getElementById('title').value;
         const content = document.getElementById('content').value;
+        const category = document.getElementById('category').value; // Get category value
         const author = localStorage.getItem('currentUser');
 
         const newPost = {
             title,
             content,
+            category, // Include category
             author,
             date: new Date().toISOString(),
             comments: []
@@ -45,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         savePost(newPost);
         fetchPosts();
-        document.getElementById('postForm').reset(); // Reset the form after posting
+        document.getElementById('postForm').reset();
     });
 
     document.getElementById('logout').addEventListener('click', (e) => {
@@ -54,31 +56,43 @@ document.addEventListener('DOMContentLoaded', () => {
         showLogin();
     });
 
+    document.getElementById('filterCategory').addEventListener('change', fetchPosts); // Add event listener
+
     fetchPosts();
 });
 
 function fetchPosts() {
+    const selectedCategory = document.getElementById('filterCategory').value;
     const posts = JSON.parse(localStorage.getItem('posts')) || [];
     const postsContainer = document.getElementById('posts');
     postsContainer.innerHTML = '';
-    posts.forEach((post, index) => {
+
+    const filteredPosts = selectedCategory === 'All' ? posts : posts.filter(post => post.category === selectedCategory);
+
+    filteredPosts.forEach((post, index) => {
         const postElement = document.createElement('div');
         postElement.className = 'post';
         postElement.innerHTML = `
-            <h2>${post.title}</h2>
+        <div>
+            <p><strong class="title">${post.title}</strong>. <small class="date">${new Date(post.date).toLocaleString()}</small></p>
+             <p>Category:<strong>${post.category}</strong></p> <!-- Display category -->
+        </div>
+            <hr>
+            <h3><strong>${post.author}:</strong></h3>
+                <div class="content">
             <p>${post.content}</p>
-            <p>Author: ${post.author}</p>
-            <p>Date: ${new Date(post.date).toLocaleString()}</p>
+                </div>
             <div class="comments">
                 ${post.comments.map(comment => `
+                <hr>
                     <div class="comment">
+                        <small class="date">${new Date(comment.date).toLocaleString()}</small>
                         <p><strong>${comment.author}</strong>: ${comment.content}</p>
-                        <small>${new Date(comment.date).toLocaleString()}</small>
                     </div>
                 `).join('')}
             </div>
             <form class="commentForm" data-index="${index}">
-                <input type="text" class="commentInput" placeholder="Add a comment" required>
+                <input type="text" class="commentInput" placeholder="Add a comment" required autocomplete="off">
                 <button type="submit">Comment</button>
             </form>
         `;
