@@ -2,12 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-const axios = require('axios');
 const postRoutes = require('./api/routes/posts');
 const userRoutes = require('./api/routes/users');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(cors({
@@ -20,27 +19,31 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes);
 
-app.get('/api/users', async (req, res) => {
-    try {
-        // Replace with actual logic to fetch user data, e.g., from a database
-        const user = {
-            username: 'john_doe',
-            createdAt: '2023-01-15T09:41:00Z'
-        };
-        res.json(user);
-    } catch (error) {
-        res.status(500).json({ message: 'Failed to fetch user data' });
-    }
+// Mock database
+const users = [
+  { id: 1, username: 'john_doe', createdAt: '2023-01-15T09:41:00Z' },
+  { id: 2, username: 'jane_doe', createdAt: '2023-01-20T10:00:00Z' }
+];
+
+app.get('/api/users/:id', (req, res) => {
+  const user = users.find(user => user.id === parseInt(req.params.id));
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404).json({ message: 'User not found' });
+  }
 });
+;
 
 app.post('/api/users/register', async (req, res) => {
     try {
         const { username, password } = req.body;
-        // Replace with actual logic to register a user, e.g., saving to a database
         const newUser = {
+            id: users.length + 1,
             username,
             createdAt: new Date().toISOString()
         };
+        users.push(newUser);
         res.status(201).json({ user: newUser });
     } catch (error) {
         res.status(500).json({ message: 'Failed to register user' });
@@ -50,12 +53,12 @@ app.post('/api/users/register', async (req, res) => {
 app.post('/api/users/login', async (req, res) => {
     try {
         const { username, password } = req.body;
-        // Replace with actual logic to authenticate a user
-        const authenticatedUser = {
-            username,
-            createdAt: '2023-01-15T09:41:00Z'
-        };
-        res.json({ user: authenticatedUser });
+        const user = users.find(user => user.username === username);
+        if (user) {
+            res.json({ user });
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
     } catch (error) {
         res.status(500).json({ message: 'Failed to login' });
     }
@@ -67,4 +70,10 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
+}).on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`Port ${port} is already in use`);
+  } else {
+    console.error(err);
+  }
 });

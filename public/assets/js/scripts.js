@@ -3,24 +3,30 @@ const API_URL = 'http://localhost:3000/api';
 document.addEventListener('DOMContentLoaded', () => {
     setupFormHandlers();
     setupLogoutButton();
-    setupDropdown();  // Ensure dropdown is set up
-    setupAuthToggle();  // Setup auth form toggle
-    checkAuthentication();  // Ensure user is authenticated before loading content
-    fetchAccountInfo(); // Fetch account info on load
+    setupDropdown();
+    setupAuthToggle();
+    checkAuthentication();
+    fetchAccountInfo();
 });
 
 async function fetchAccountInfo() {
-    try {
-        const response = await fetch(`${API_URL}/users`);
-        if (response.ok) {
-            const accountInfo = await response.json();
-            document.getElementById('username').textContent = accountInfo.username;
-            document.getElementById('created-at').textContent = new Date(accountInfo.createdAt).toLocaleDateString();
-        } else {
-            console.error('Failed to fetch account information');
+    const user = getUser();
+    if (user) {
+        console.log('Fetching account info for user ID:', user.id); // Log user ID
+        try {
+            const response = await fetch(`${API_URL}/users/${user.id}`);
+            console.log('Server response:', response); // Log server response
+            if (response.ok) {
+                const accountInfo = await response.json();
+                console.log('Account info:', accountInfo); // Log account info
+                document.getElementById('username').textContent = accountInfo.username;
+                document.getElementById('created-at').textContent = new Date(accountInfo.createdAt).toLocaleDateString();
+            } else {
+                console.error('Failed to fetch account information');
+            }
+        } catch (error) {
+            console.error('Error:', error);
         }
-    } catch (error) {
-        console.error('Error:', error);
     }
 }
 
@@ -35,12 +41,12 @@ function checkAuthentication() {
         }
 
         if (isLoginPage) {
-            window.location.href = 'feed.html'; // Redirect to home if already logged in
+            window.location.href = 'feed.html';
         } else {
-            loadPosts(); // Load posts only if user is authenticated
+            loadPosts();
         }
     } else if (!isLoginPage) {
-        window.location.href = 'login.html'; // Redirect to login page if not logged in
+        window.location.href = 'login.html';
     }
 }
 
@@ -71,12 +77,12 @@ function setupLogoutButton() {
 function handleLogout(e) {
     e.preventDefault();
     localStorage.removeItem('user');
-    window.location.href = 'login.html';  // Redirect to the login page
+    window.location.href = 'login.html';
 }
 
 async function handlePostCreation(e) {
     e.preventDefault();
-    const content = document.getElementById('post-content').value.trim();  // Trim whitespace
+    const content = document.getElementById('post-content').value.trim();
 
     if (!content) {
         alert('Post content cannot be empty!');
@@ -96,7 +102,7 @@ async function handlePostCreation(e) {
             body: JSON.stringify({ content, username: user.username })
         });
         if (response.ok) {
-            document.getElementById('post-content').value = ''; // Clear the textarea after posting
+            document.getElementById('post-content').value = '';
             await loadPosts();
         } else {
             throw new Error('Failed to create post');
@@ -121,7 +127,7 @@ async function handleRegister(e) {
         if (response.ok) {
             const result = await response.json();
             localStorage.setItem('user', JSON.stringify(result.user));
-            window.location.href = 'feed.html'; // Redirect to home page after successful registration
+            window.location.href = 'feed.html';
         } else {
             const result = await response.json();
             alert(result.message);
@@ -146,7 +152,7 @@ async function handleLogin(e) {
         if (response.ok) {
             const result = await response.json();
             localStorage.setItem('user', JSON.stringify(result.user));
-            window.location.href = 'feed.html'; // Redirect to home page after successful login
+            window.location.href = 'feed.html';
         } else {
             const result = await response.json();
             alert(result.message);
