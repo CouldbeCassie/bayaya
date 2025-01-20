@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: #5b9c5d;
     color: white;
     padding: 1rem;
     text-align: center;
@@ -21,7 +21,9 @@ nav {
 nav button {
     margin: 0 0.5rem;
     padding: 0.5rem 1rem;
-    background-color: #4CAF50;
+    width: fit-content;
+    height: fit-content;
+    background-color: #ae6b6b;
     color: white;
     border: none;
     border-radius: 5px;
@@ -64,7 +66,7 @@ input, textarea {
 
 button {
     padding: 0.5rem 1rem;
-    background-color: #4CAF50;
+    background-color: #89db8a;
     color: white;
     border: none;
     border-radius: 5px;
@@ -73,7 +75,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #4ca851;
 }
 
 .post {
@@ -92,7 +94,16 @@ button:hover {
     margin: 0.5rem 0;
 }
 
-.comments p {
-    margin: 0.5rem 0;
-    font-style: italic;
+.comments {
+    margin-top: 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid #ccc;
+}
+
+.comment {
+    margin-bottom: 0.5rem;
+}
+
+.commentForm {
+    margin-top: 1rem;
 }

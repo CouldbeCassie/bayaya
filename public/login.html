@@ -8,8 +8,9 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to My Forum</h1>
+        
         <nav>
+            <h1>PiroFrms.</h1>
             <button id="showLogin">Login</button>
             <button id="showSignup">Signup</button>
             <button id="logout" style="display: none;">Logout</button>
@@ -22,7 +23,7 @@
                 <label for="loginUsername">Username:</label>
                 <input type="text" id="loginUsername" required>
                 <label for="loginPassword">Password:</label>
-                <input type="password" id="loginPassword" required>
+                <input type="password" id="loginPassword" required autocomplete="off">
                 <button type="submit">Login</button>
             </form>
         </section>
@@ -32,7 +33,7 @@
                 <label for="signupUsername">Username:</label>
                 <input type="text" id="signupUsername" required>
                 <label for="signupPassword">Password:</label>
-                <input type="password" id="signupPassword" required>
+                <input type="password" id="signupPassword" required autocomplete="off">
                 <button type="submit">Signup</button>
             </form>
         </section>

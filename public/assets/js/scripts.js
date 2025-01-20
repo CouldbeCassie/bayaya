@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         savePost(newPost);
         fetchPosts();
+        document.getElementById('postForm').reset(); // Reset the form after posting
     });
 
     document.getElementById('logout').addEventListener('click', (e) => {
@@ -69,7 +70,12 @@ function fetchPosts() {
             <p>Author: ${post.author}</p>
             <p>Date: ${new Date(post.date).toLocaleString()}</p>
             <div class="comments">
-                ${post.comments.map(comment => `<p>${comment}</p>`).join('')}
+                ${post.comments.map(comment => `
+                    <div class="comment">
+                        <p><strong>${comment.author}</strong>: ${comment.content}</p>
+                        <small>${new Date(comment.date).toLocaleString()}</small>
+                    </div>
+                `).join('')}
             </div>
             <form class="commentForm" data-index="${index}">
                 <input type="text" class="commentInput" placeholder="Add a comment" required>
@@ -90,9 +96,15 @@ function fetchPosts() {
     });
 }
 
-function addComment(index, comment) {
+function addComment(index, content) {
     const posts = JSON.parse(localStorage.getItem('posts')) || [];
-    posts[index].comments.push(comment);
+    const author = localStorage.getItem('currentUser');
+    const newComment = {
+        author,
+        content,
+        date: new Date().toISOString()
+    };
+    posts[index].comments.push(newComment);
     localStorage.setItem('posts', JSON.stringify(posts));
     fetchPosts();
 }
