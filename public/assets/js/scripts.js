@@ -140,7 +140,20 @@ function signup(username, password) {
         return;
     }
 
-    const users = JSON.parse(localStorage.getItem('users')) || [];
+    // Ensure users is correctly parsed as an array
+    let users = [];
+    try {
+        users = JSON.parse(localStorage.getItem('users')) || [];
+    } catch (error) {
+        console.error('Failed to parse users from localStorage', error);
+        users = [];
+    }
+
+    if (!Array.isArray(users)) {
+        alert('Failed to load users. Please try again.');
+        return;
+    }
+
     if (users.find(user => user.username === username)) {
         alert('Username already exists');
         return;

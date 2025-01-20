@@ -153,3 +153,24 @@ button:hover {
 .commentForm {
     margin-top: 1rem;
 }
+
+#filterCategory {
+    padding: 0.5rem;
+    border: 1px solid #ae6b6b;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    color: #333;
+    font-size: 1rem;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+#filterCategory:hover {
+    background-color: #e0e0e0;
+    border-color: #45a049;
+}
+
+#filterCategory:focus {
+    background-color: #e0e0e0;
+    border-color: #45a049;
+    outline: none;
+}
