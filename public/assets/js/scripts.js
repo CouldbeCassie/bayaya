@@ -293,7 +293,7 @@ function showLogin() {
 
 function showSignup() {
     document.getElementById('loginSection').style.display = 'none';
-    document.getElementById('signupSection').style.display = 'block';
+    document.getElementById('signupSection').style.display = 'none';
     document.getElementById('forumSection').style.display = 'block';
     document.getElementById('showSignup').style.display = 'block';
     document.getElementById('logout').style.display = 'none';
