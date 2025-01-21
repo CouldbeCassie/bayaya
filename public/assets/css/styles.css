@@ -30,15 +30,15 @@ header {
     padding: 1rem;
     text-align: center;
 }
-nav {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
+nav div h1{
+    text-align: center;
+    margin-top: 1.rem;
 }
-nav button {
+nav button{
     margin: 0 0.5rem;
     padding: 0.5rem 1rem;
     width: fit-content;
+    justify-content: space-evenly;
     height: fit-content;
     background-color: #ae7e6b;
     color: white;
@@ -46,6 +46,11 @@ nav button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+
+}
+.flexi{
+    display: flex;
+    justify-items: left;
 }
 nav button:hover {
     background-color: #a04545;
