@@ -263,3 +263,59 @@ function signup(username, password) {
         alert('An error occurred. Please try again.');
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const showLoginBtn = document.getElementById("showLogin");
+    const showSignupBtn = document.getElementById("showSignup");
+    const logoutBtn = document.getElementById("logout");
+    const loginSection = document.getElementById("loginSection");
+    const signupSection = document.getElementById("signupSection");
+    const forumSection = document.getElementById("forumSection");
+
+    // Show login section by default
+    loginSection.style.display = "block";
+    signupSection.style.display = "none";
+    forumSection.style.display = "none";
+
+    showLoginBtn.addEventListener("click", () => {
+        loginSection.style.display = "block";
+        signupSection.style.display = "none";
+        forumSection.style.display = "none";
+    });
+
+    showSignupBtn.addEventListener("click", () => {
+        signupSection.style.display = "block";
+        loginSection.style.display = "none";
+        forumSection.style.display = "none";
+    });
+
+    logoutBtn.addEventListener("click", () => {
+        loginSection.style.display = "none";
+        signupSection.style.display = "none";
+        forumSection.style.display = "none";
+        logoutBtn.style.display = "none";
+        showLoginBtn.style.display = "inline-block";
+        showSignupBtn.style.display = "inline-block";
+    });
+
+    // Example of showing forum section after login/signup (assuming successful login/signup logic is implemented)
+    document.getElementById("loginForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        // Add your login logic here
+        loginSection.style.display = "none";
+        forumSection.style.display = "block";
+        logoutBtn.style.display = "inline-block";
+        showLoginBtn.style.display = "none";
+        showSignupBtn.style.display = "none";
+    });
+
+    document.getElementById("signupForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        // Add your signup logic here
+        signupSection.style.display = "none";
+        forumSection.style.display = "block";
+        logoutBtn.style.display = "inline-block";
+        showLoginBtn.style.display = "none";
+        showSignupBtn.style.display = "none";
+    });
+});
