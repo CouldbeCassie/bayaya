@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = document.getElementById('title').value;
         const content = document.getElementById('content').value;
         const category = document.getElementById('category').value;
-        const author = localStorage.getItem('currentUser');
-
+        const author = localStorage.getItem('currentUser') || 'Anonymous';
+    
         const newPost = {
             title,
             content,
@@ -44,12 +44,24 @@ document.addEventListener('DOMContentLoaded', () => {
             date: new Date().toISOString(),
             comments: []
         };
-
-        savePost(newPost);
-        fetchPosts();
-        document.getElementById('postForm').reset();
+    
+        // Check if the savePost function is defined
+        if (typeof savePost === 'function') {
+            savePost(newPost)
+                .then(() => {
+                    fetchPosts();
+                    document.getElementById('postForm').reset();
+                })
+                .catch(error => {
+                    console.error('Error saving post:', error);
+                    alert('An error occurred while saving the post. Please try again.');
+                });
+        } else {
+            console.error('savePost function is not defined');
+            alert('An error occurred while saving the post. Please try again.');
+        }
     });
-
+    
     document.getElementById('logout').addEventListener('click', (e) => {
         e.preventDefault();
         localStorage.removeItem('currentUser');
