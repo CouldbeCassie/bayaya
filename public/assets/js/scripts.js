@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         showLogin();
     });
 
-   
     document.getElementById('logout').addEventListener('click', (e) => {
         e.preventDefault();
         localStorage.removeItem('currentUser');
@@ -40,6 +39,80 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchPosts();
 });
+
+function signup(username, password) {
+    fetch('https://172.21.16.90:4000/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+    })
+    .then(response => {
+        if (response.status === 201) {
+            localStorage.setItem('currentUser', username);
+            showForum();
+        } else if (response.status === 400) {
+            alert('Username already exists');
+        } else {
+            alert('Signup failed. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    });
+}
+
+function login(username, password) {
+    fetch('https://172.21.16.90:4000/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+    })
+    .then(response => {
+        if (response.status === 200) {
+            localStorage.setItem('currentUser', username);
+            showForum();
+        } else {
+            alert('Invalid username or password');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    });
+}
+
+function showLogin() {
+    document.getElementById('loginSection').style.display = 'block';
+    document.getElementById('signupSection').style.display = 'none';
+    document.getElementById('forumSection').style.display = 'none';
+    document.getElementById('showLogin').style.display = 'block';
+    document.getElementById('showSignup').style.display = 'block';
+    document.getElementById('logout').style.display = 'none';
+}
+
+function showSignup() {
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('signupSection').style.display = 'block';
+    document.getElementById('forumSection').style.display = 'none';
+    document.getElementById('showLogin').style.display = 'block';
+    document.getElementById('showSignup').style.display = 'block';
+    document.getElementById('logout').style.display = 'none';
+}
+
+function showForum() {
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('signupSection').style.display = 'none';
+    document.getElementById('forumSection').style.display = 'block';
+    document.getElementById('showLogin').style.display = 'none';
+    document.getElementById('showSignup').style.display = 'none';
+    document.getElementById('logout').style.display = 'block';
+}
+
 function fetchPosts() {
     fetch('https://172.21.16.90:4000/posts')
         .then(response => response.json())
@@ -160,51 +233,34 @@ function fetchPosts() {
         .catch(error => console.error('Error fetching posts:', error));
 }
 
-            function addComment(postIndex, content) {
-                const author = localStorage.getItem('currentUser') || 'Anonymous';
-                const newComment = {
-                    author,
-                    content,
-                    date: new Date().toISOString(),
-                    replies: []
-                };
-                fetch(`https://172.21.16.90:4000/posts/${postIndex}/comments`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(newComment),
-                })
-                .then(() => fetchPosts())
-                .catch(error => console.error('Error adding comment:', error));
-            }
-            
-            function addReply(postIndex, commentIndex, content) {
-                const author = localStorage.getItem('currentUser') || 'Anonymous';
-                const newReply = {
-                    author,
-                    content,
-                    date: new Date().toISOString(),
-                };
-                fetch(`https://172.21.16.90:4000/posts/${postIndex}/comments/${commentIndex}/replies`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(newReply),
-                })
-                .then(() => fetchPosts())
-                .catch(error => console.error('Error adding reply:', error));
-            }
-            
+// Function to add a comment
+function addComment(postIndex, content) {
+    const author = localStorage.getItem('currentUser') || 'Anonymous';
+    const newComment = {
+        author,
+        content,
+        date: new Date().toISOString(),
+        replies: []
+    };
+    fetch(`https://172.21.16.90:4000/posts/${postIndex}/comments`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newComment),
+    })
+    .then(() => fetchPosts())
+    .catch(error => console.error('Error adding comment:', error));
+}
+
+// Function to add a reply
 function addReply(postIndex, commentIndex, content) {
-    const author = localStorage.getItem('currentUser');
+    const author = localStorage.getItem('currentUser') || 'Anonymous';
     const newReply = {
         author,
         content,
-        date: new Date().toISOString()
+        date: new Date().toISOString(),
     };
-
     fetch(`https://172.21.16.90:4000/posts/${postIndex}/comments/${commentIndex}/replies`, {
         method: 'POST',
         headers: {
@@ -212,80 +268,54 @@ function addReply(postIndex, commentIndex, content) {
         },
         body: JSON.stringify(newReply),
     })
-    .then(response => response.json())
     .then(() => fetchPosts())
     .catch(error => console.error('Error adding reply:', error));
 }
 
-function signup(username, password) {
-    fetch('https://172.21.16.90:4000/signup', {
+// Function to save a new post
+function savePost(newPost) {
+    return fetch('https://172.21.16.90:4000/posts', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify(newPost),
     })
     .then(response => {
-        if (response.status === 201) {
-            localStorage.setItem('currentUser', username);
-            showForum();
-        } else if (response.status === 400) {
-            alert('Username already exists');
-        } else {
-            alert('Signup failed. Please try again.');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+        console.log('Post created successfully!');
     })
     .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again.');
+        console.error('Error saving post:', error);
+        throw error;
     });
 }
 
-function login(username, password) {
-    fetch('https://172.21.16.90:4000/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-    })
-    .then(response => {
-        if (response.status === 200) {
-            localStorage.setItem('currentUser', username);
-            showForum();
-        } else {
-            alert('Invalid username or password');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again.');
-    });
-}
+document.getElementById('postForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = document.getElementById('title').value;
+    const content = document.getElementById('content').value;
+    const category = document.getElementById('category').value;
+    const author = localStorage.getItem('currentUser') || 'Anonymous';
 
-function showLogin() {
-    document.getElementById('loginSection').style.display = 'block';
-    document.getElementById('signupSection').style.display = 'none';
-    document.getElementById('forumSection').style.display = 'none';
-    document.getElementById('showLogin').style.display = 'block';
-    document.getElementById('showSignup').style.display = 'block';
-    document.getElementById('logout').style.display = 'none';
-}
+    const newPost = {
+        title,
+        content,
+        category,
+        author,
+        date: new Date().toISOString(),
+        comments: []
+    };
 
-function showSignup() {
-    document.getElementById('loginSection').style.display = 'none';
-    document.getElementById('signupSection').style.display = 'block';
-    document.getElementById('forumSection').style.display = 'none';
-    document.getElementById('showLogin').style.display = 'block';
-    document.getElementById('showSignup').style.display = 'block';
-    document.getElementById('logout').style.display = 'none';
-}
-
-function showForum() {
-    document.getElementById('loginSection').style.display = 'none';
-    document.getElementById('signupSection').style.display = 'none';
-    document.getElementById('forumSection').style.display = 'block';
-    document.getElementById('showLogin').style.display = 'none';
-    document.getElementById('showSignup').style.display = 'none';
-    document.getElementById('logout').style.display = 'block';
-}
+    savePost(newPost)
+        .then(() => {
+            fetchPosts();
+            document.getElementById('postForm').reset();
+        })
+        .catch(error => {
+            console.error('Error saving post:', error);
+            alert('An error occurred while saving the post. Please try again.');
+        });
+});
