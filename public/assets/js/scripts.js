@@ -45,21 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
             comments: []
         };
 
-        fetch('http://192.168.1.118:3000/posts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newPost),
-        })
-        .then(response => response.json())
-        .then(() => {
-            fetchPosts();
-            document.getElementById('postForm').reset();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+        savePost(newPost);
+        fetchPosts();
+        document.getElementById('postForm').reset();
     });
 
     document.getElementById('logout').addEventListener('click', (e) => {
@@ -74,19 +62,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function fetchPosts() {
-    fetch('http://192.168.1.118:3000/posts')
-    .then(response => response.json())
-    .then(posts => {
-        const selectedCategory = document.getElementById('filterCategory').value;
-        const postsContainer = document.getElementById('posts');
-        postsContainer.innerHTML = '';
+    fetch('http://172.21.16.90:3000/posts')
+        .then(response => response.json())
+        .then(posts => {
+            const selectedCategory = document.getElementById('filterCategory').value;
+            const postsContainer = document.getElementById('posts');
+            postsContainer.innerHTML = '';
 
-        const filteredPosts = selectedCategory === 'All' ? posts : posts.filter(post => post.category === selectedCategory);
+            const filteredPosts = selectedCategory === 'All' ? posts : posts.filter(post => post.category === selectedCategory);
 
-        filteredPosts.forEach((post, postIndex) => {
-            const postElement = document.createElement('div');
-            postElement.className = 'post';
-            postElement.innerHTML = `
+            filteredPosts.forEach((post, postIndex) => {
+                const postElement = document.createElement('div');
+                postElement.className = 'post';
+                postElement.innerHTML = `
                 <div>
                     <p><strong class="title">${post.title}</strong>. <small class="date">${new Date(post.date).toLocaleString()}</small></p>
                     <p>Category: <strong>${post.category}</strong></p>
@@ -105,108 +93,100 @@ function fetchPosts() {
                     <button class="toggleComments" aria-expanded="false" style="display: ${post.comments.length > 0 ? 'block' : 'none'};">Show Comments</button>
                     <div class="comments-content" style="display: none;">
                         ${post.comments.map((comment, commentIndex) => `
-                            <hr>
-                            <div class="comment">
-                                <small class="date">${new Date(comment.date).toLocaleString()}</small>
-                                <p><strong>${comment.author}</strong>: ${comment.content}</p>
-                                ${comment.replies && comment.replies.length > 0 ? `
-                                    <button class="toggleReplies" aria-expanded="false">Show Replies</button>
-                                    <div class="replies" style="display: none;">
-                                        ${comment.replies.map(reply => `
-                                            <div class="reply">
-                                                <div class="vertical-line"></div>
-                                                <div class="reply-content">
-                                                    <small class="date">${new Date(reply.date).toLocaleString()}</small>
-                                                    <p><strong>${reply.author}</strong>: ${reply.content}</p>
-                                                </div>
-                                            </div>
-                                        `).join('')}
+                        <hr>
+                        <div class="comment">
+                            <small class="date">${new Date(comment.date).toLocaleString()}</small>
+                            <p><strong>${comment.author}</strong>: ${comment.content}</p>
+                            ${comment.replies && comment.replies.length > 0 ? `
+                            <button class="toggleReplies" aria-expanded="false">Show Replies</button>
+                            <div class="replies" style="display: none;">
+                                ${comment.replies.map(reply => `
+                                <div class="reply">
+                                    <div class="vertical-line"></div>
+                                    <div class="reply-content">
+                                        <small class="date">${new Date(reply.date).toLocaleString()}</small>
+                                        <p><strong>${reply.author}</strong>: ${reply.content}</p>
                                     </div>
-                                ` : ''}
-                                <form class="replyForm" data-post-index="${postIndex}" data-comment-index="${commentIndex}">
-                                    <input type="text" class="replyInput" placeholder="Add a reply" required autocomplete="off">
-                                    <button type="submit">Reply</button>
-                                </form>
+                                </div>
+                                `).join('')}
                             </div>
+                            ` : ''}
+                            <form class="replyForm" data-post-index="${postIndex}" data-comment-index="${commentIndex}">
+                                <input type="text" class="replyInput" placeholder="Add a reply" required autocomplete="off">
+                                <button type="submit">Reply</button>
+                            </form>
+                        </div>
                         `).join('')}
                     </div>
                 </div>
-            `;
-            postsContainer.appendChild(postElement);
-        });
+                `;
+                postsContainer.appendChild(postElement);
+            });
 
-        setupEventListenersForCommentsAndReplies();
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
+            document.querySelectorAll('.commentForm').forEach(form => {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const postIndex = e.target.getAttribute('data-post-index');
+                    const commentInput = e.target.querySelector('.commentInput');
+                    addComment(postIndex, commentInput.value);
+                    commentInput.value = '';
+                });
+            });
 
-function setupEventListenersForCommentsAndReplies() {
-    document.querySelectorAll('.commentForm').forEach(form => {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const postIndex = e.target.getAttribute('data-post-index');
-            const commentInput = e.target.querySelector('.commentInput');
-            addComment(postIndex, commentInput.value);
-            commentInput.value = '';
-        });
-    });
+            document.querySelectorAll('.replyForm').forEach(form => {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const postIndex = e.target.getAttribute('data-post-index');
+                    const commentIndex = e.target.getAttribute('data-comment-index');
+                    const replyInput = e.target.querySelector('.replyInput');
+                    addReply(postIndex, commentIndex, replyInput.value);
+                    replyInput.value = '';
+                });
+            });
 
-    document.querySelectorAll('.replyForm').forEach(form => {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const postIndex = e.target.getAttribute('data-post-index');
-            const commentIndex = e.target.getAttribute('data-comment-index');
-            const replyInput = e.target.querySelector('.replyInput');
-            addReply(postIndex, commentIndex, replyInput.value);
-            replyInput.value = '';
-        });
-    });
+            document.querySelectorAll('.toggleComments').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const commentsContent = e.target.nextElementSibling;
+                    if (commentsContent.style.display === 'none') {
+                        commentsContent.style.display = 'block';
+                        e.target.textContent = 'Hide Comments';
+                        e.target.setAttribute('aria-expanded', 'true');
+                    } else {
+                        commentsContent.style.display = 'none';
+                        e.target.textContent = 'Show Comments';
+                        e.target.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
 
-    document.querySelectorAll('.toggleComments').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const commentsContent = e.target.nextElementSibling;
-            if (commentsContent.style.display === 'none') {
-                commentsContent.style.display = 'block';
-                e.target.textContent = 'Hide Comments';
-                e.target.setAttribute('aria-expanded', 'true');
-            } else {
-                commentsContent.style.display = 'none';
-                e.target.textContent = 'Show Comments';
-                e.target.setAttribute('aria-expanded', 'false');
-            }
-        });
-    });
-
-    document.querySelectorAll('.toggleReplies').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const replies = e.target.nextElementSibling;
-            if (replies.style.display === 'none') {
-                replies.style.display = 'block';
-                e.target.textContent = 'Hide Replies';
-                e.target.setAttribute('aria-expanded', 'true');
-            } else {
-                replies.style.display = 'none';
-                e.target.textContent = 'Show Replies';
-                e.target.setAttribute('aria-expanded', 'false');
-            }
-        });
-    });
+            document.querySelectorAll('.toggleReplies').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const replies = e.target.nextElementSibling;
+                    if (replies.style.display === 'none') {
+                        replies.style.display = 'block';
+                        e.target.textContent = 'Hide Replies';
+                        e.target.setAttribute('aria-expanded', 'true');
+                    } else {
+                        replies.style.display = 'none';
+                        e.target.textContent = 'Show Replies';
+                        e.target.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+        })
+        .catch(error => console.error('Error fetching posts:', error));
 }
 
 function addComment(postIndex, content) {
-    const currentUser = localStorage.getItem('currentUser');
-    if (!currentUser) return alert('Please log in to comment.');
-
+    const author = localStorage.getItem('currentUser');
     const newComment = {
-        author: currentUser,
+        author,
         content,
         date: new Date().toISOString(),
         replies: []
     };
 
-    fetch(`http://192.168.1.118:3000/posts/${postIndex}/comments`, {
+    fetch(`http://172.21.16.90:3000/posts/${postIndex}/comments`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -215,20 +195,18 @@ function addComment(postIndex, content) {
     })
     .then(response => response.json())
     .then(() => fetchPosts())
-    .catch(error => console.error('Error:', error));
+    .catch(error => console.error('Error adding comment:', error));
 }
 
 function addReply(postIndex, commentIndex, content) {
-    const currentUser = localStorage.getItem('currentUser');
-    if (!currentUser) return alert('Please log in to reply.');
-
+    const author = localStorage.getItem('currentUser');
     const newReply = {
-        author: currentUser,
+        author,
         content,
         date: new Date().toISOString()
     };
 
-    fetch(`http://192.168.1.118:3000/posts/${postIndex}/comments/${commentIndex}/replies`, {
+    fetch(`http://172.21.16.90:3000/posts/${postIndex}/comments/${commentIndex}/replies`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -237,11 +215,11 @@ function addReply(postIndex, commentIndex, content) {
     })
     .then(response => response.json())
     .then(() => fetchPosts())
-    .catch(error => console.error('Error:', error));
+    .catch(error => console.error('Error adding reply:', error));
 }
 
 function signup(username, password) {
-    fetch('http://192.168.1.118:3000/signup', {
+    fetch('http://172.21.16.90:3000/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -264,58 +242,51 @@ function signup(username, password) {
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const showLoginBtn = document.getElementById("showLogin");
-    const showSignupBtn = document.getElementById("showSignup");
-    const logoutBtn = document.getElementById("logout");
-    const loginSection = document.getElementById("loginSection");
-    const signupSection = document.getElementById("signupSection");
-    const forumSection = document.getElementById("forumSection");
-
-    // Show login section by default
-    loginSection.style.display = "block";
-    signupSection.style.display = "none";
-    forumSection.style.display = "none";
-
-    showLoginBtn.addEventListener("click", () => {
-        loginSection.style.display = "block";
-        signupSection.style.display = "none";
-        forumSection.style.display = "none";
+function login(username, password) {
+    fetch('http://172.21.16.90:3000/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+    })
+    .then(response => {
+        if (response.status === 200) {
+            localStorage.setItem('currentUser', username);
+            showForum();
+        } else {
+            alert('Invalid username or password');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
     });
+}
 
-    showSignupBtn.addEventListener("click", () => {
-        signupSection.style.display = "block";
-        loginSection.style.display = "none";
-        forumSection.style.display = "none";
-    });
+function showLogin() {
+    document.getElementById('loginSection').style.display = 'block';
+    document.getElementById('signupSection').style.display = 'none';
+    document.getElementById('forumSection').style.display = 'none';
+    document.getElementById('showLogin').style.display = 'block';
+    document.getElementById('showSignup').style.display = 'block';
+    document.getElementById('logout').style.display = 'none';
+}
 
-    logoutBtn.addEventListener("click", () => {
-        loginSection.style.display = "none";
-        signupSection.style.display = "none";
-        forumSection.style.display = "none";
-        logoutBtn.style.display = "none";
-        showLoginBtn.style.display = "inline-block";
-        showSignupBtn.style.display = "inline-block";
-    });
+function showSignup() {
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('signupSection').style.display = 'block';
+    document.getElementById('forumSection').style.display = 'none';
+    document.getElementById('showLogin').style.display = 'block';
+    document.getElementById('showSignup').style.display = 'block';
+    document.getElementById('logout').style.display = 'none';
+}
 
-    // Example of showing forum section after login/signup (assuming successful login/signup logic is implemented)
-    document.getElementById("loginForm").addEventListener("submit", (event) => {
-        event.preventDefault();
-        // Add your login logic here
-        loginSection.style.display = "none";
-        forumSection.style.display = "block";
-        logoutBtn.style.display = "inline-block";
-        showLoginBtn.style.display = "none";
-        showSignupBtn.style.display = "none";
-    });
-
-    document.getElementById("signupForm").addEventListener("submit", (event) => {
-        event.preventDefault();
-        // Add your signup logic here
-        signupSection.style.display = "none";
-        forumSection.style.display = "block";
-        logoutBtn.style.display = "inline-block";
-        showLoginBtn.style.display = "none";
-        showSignupBtn.style.display = "none";
-    });
-});
+function showForum() {
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('signupSection').style.display = 'none';
+    document.getElementById('forumSection').style.display = 'block';
+    document.getElementById('showLogin').style.display = 'none';
+    document.getElementById('showSignup').style.display = 'none';
+    document.getElementById('logout').style.display = 'block';
+}
