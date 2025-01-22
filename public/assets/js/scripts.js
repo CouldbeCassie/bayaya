@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function fetchPosts() {
-    fetch('http://172.21.16.90:3000/posts')
+    fetch('http://172.21.16.90:4000/posts')
         .then(response => response.json())
         .then(posts => {
             const selectedCategory = document.getElementById('filterCategory').value;
@@ -186,7 +186,7 @@ function addComment(postIndex, content) {
         replies: []
     };
 
-    fetch(`http://172.21.16.90:3000/posts/${postIndex}/comments`, {
+    fetch(`http://172.21.16.90:4000/posts/${postIndex}/comments`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -206,7 +206,7 @@ function addReply(postIndex, commentIndex, content) {
         date: new Date().toISOString()
     };
 
-    fetch(`http://172.21.16.90:3000/posts/${postIndex}/comments/${commentIndex}/replies`, {
+    fetch(`http://172.21.16.90:4000/posts/${postIndex}/comments/${commentIndex}/replies`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -219,7 +219,7 @@ function addReply(postIndex, commentIndex, content) {
 }
 
 function signup(username, password) {
-    fetch('http://172.21.16.90:3000/signup', {
+    fetch('http://172.21.16.90:4000/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -243,7 +243,7 @@ function signup(username, password) {
 }
 
 function login(username, password) {
-    fetch('http://172.21.16.90:3000/login', {
+    fetch('http://172.21.16.90:4000/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
