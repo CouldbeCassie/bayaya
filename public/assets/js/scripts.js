@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function fetchPosts() {
-    fetch('https://172.21.16.90:4000/api/posts')
+    fetch('https://172.21.16.90:4000/posts')
         .then(response => response.json())
         .then(posts => {
             const selectedCategory = document.getElementById('filterCategory').value;
@@ -169,7 +169,7 @@ function addComment(postIndex, content) {
     
     // Function to save a new post
 function savePost(newPost) {
-    return fetch('https://172.21.16.90:4000:4000/api/posts', {
+    return fetch('https://172.21.16.90:4000/posts', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -216,7 +216,7 @@ document.getElementById('postForm').addEventListener('submit', (e) => {
 });
 // Function to save a new post
 function savePost(newPost) {
-    return fetch('https://172.21.16.90:4000:4000/api/posts', {
+    return fetch('https://172.21.16.90:4000:4000/posts', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -263,7 +263,7 @@ document.getElementById('postForm').addEventListener('submit', (e) => {
 });
 
 
-    fetch(`https://172.21.16.90:4000/api/posts/${postIndex}/comments`, {
+    fetch(`https://172.21.16.90:4000/posts/${postIndex}/comments`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -283,7 +283,7 @@ function addReply(postIndex, commentIndex, content) {
         date: new Date().toISOString()
     };
 
-    fetch(`https://172.21.16.90:4000/api/posts/${postIndex}/comments/${commentIndex}/replies`, {
+    fetch(`https://172.21.16.90:4000/posts/${postIndex}/comments/${commentIndex}/replies`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -296,7 +296,7 @@ function addReply(postIndex, commentIndex, content) {
 }
 
 function signup(username, password) {
-    fetch('https://172.21.16.90:4000/api/signup', {
+    fetch('https://172.21.16.90:4000/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -320,7 +320,7 @@ function signup(username, password) {
 }
 
 function login(username, password) {
-    fetch('https://172.21.16.90:4000/api/login', {
+    fetch('https://172.21.16.90:4000/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
