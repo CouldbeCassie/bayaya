@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchPosts();
 });
-
 function fetchPosts() {
     fetch('https://172.21.16.90:4000/posts')
         .then(response => response.json())
@@ -103,7 +102,7 @@ function fetchPosts() {
                 postsContainer.appendChild(postElement);
             });
 
-        
+            // Add event listeners for comment forms
             document.querySelectorAll('.commentForm').forEach(form => {
                 form.addEventListener('submit', (e) => {
                     e.preventDefault();
@@ -114,6 +113,7 @@ function fetchPosts() {
                 });
             });
 
+            // Add event listeners for reply forms
             document.querySelectorAll('.replyForm').forEach(form => {
                 form.addEventListener('submit', (e) => {
                     e.preventDefault();
@@ -125,6 +125,7 @@ function fetchPosts() {
                 });
             });
 
+            // Add event listeners for toggling comments
             document.querySelectorAll('.toggleComments').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const commentsContent = e.target.nextElementSibling;
@@ -140,6 +141,7 @@ function fetchPosts() {
                 });
             });
 
+            // Add event listeners for toggling replies
             document.querySelectorAll('.toggleReplies').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const replies = e.target.nextElementSibling;
@@ -158,123 +160,43 @@ function fetchPosts() {
         .catch(error => console.error('Error fetching posts:', error));
 }
 
-function addComment(postIndex, content) {
-    const author = localStorage.getItem('currentUser');
-    const newComment = {
-        author,
-        content,
-        date: new Date().toISOString(),
-        replies: []
-    };
-    
-    // Function to save a new post
-function savePost(newPost) {
-    return fetch('https://172.21.16.90:4000/posts', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newPost),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        console.log('Post created successfully!');
-    })
-    .catch(error => {
-        console.error('Error saving post:', error);
-        throw error;
-    });
-}
-
-document.getElementById('postForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const title = document.getElementById('title').value;
-    const content = document.getElementById('content').value;
-    const category = document.getElementById('category').value;
-    const author = localStorage.getItem('currentUser') || 'Anonymous';
-
-    const newPost = {
-        title,
-        content,
-        category,
-        author,
-        date: new Date().toISOString(),
-        comments: []
-    };
-
-    savePost(newPost)
-        .then(() => {
-            fetchPosts();
-            document.getElementById('postForm').reset();
-        })
-        .catch(error => {
-            console.error('Error saving post:', error);
-            alert('An error occurred while saving the post. Please try again.');
-        });
-});
-// Function to save a new post
-function savePost(newPost) {
-    return fetch('https://172.21.16.90:4000:4000/posts', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newPost),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        console.log('Post created successfully!');
-    })
-    .catch(error => {
-        console.error('Error saving post:', error);
-        throw error;
-    });
-}
-
-document.getElementById('postForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const title = document.getElementById('title').value;
-    const content = document.getElementById('content').value;
-    const category = document.getElementById('category').value;
-    const author = localStorage.getItem('currentUser') || 'Anonymous';
-
-    const newPost = {
-        title,
-        content,
-        category,
-        author,
-        date: new Date().toISOString(),
-        comments: []
-    };
-
-    savePost(newPost)
-        .then(() => {
-            fetchPosts();
-            document.getElementById('postForm').reset();
-        })
-        .catch(error => {
-            console.error('Error saving post:', error);
-            alert('An error occurred while saving the post. Please try again.');
-        });
-});
-
-
-    fetch(`https://172.21.16.90:4000/posts/${postIndex}/comments`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newComment),
-    })
-    .then(response => response.json())
-    .then(() => fetchPosts())
-    .catch(error => console.error('Error adding comment:', error));
-}
-
+            function addComment(postIndex, content) {
+                const author = localStorage.getItem('currentUser') || 'Anonymous';
+                const newComment = {
+                    author,
+                    content,
+                    date: new Date().toISOString(),
+                    replies: []
+                };
+                fetch(`https://172.21.16.90:4000/posts/${postIndex}/comments`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newComment),
+                })
+                .then(() => fetchPosts())
+                .catch(error => console.error('Error adding comment:', error));
+            }
+            
+            function addReply(postIndex, commentIndex, content) {
+                const author = localStorage.getItem('currentUser') || 'Anonymous';
+                const newReply = {
+                    author,
+                    content,
+                    date: new Date().toISOString(),
+                };
+                fetch(`https://172.21.16.90:4000/posts/${postIndex}/comments/${commentIndex}/replies`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newReply),
+                })
+                .then(() => fetchPosts())
+                .catch(error => console.error('Error adding reply:', error));
+            }
+            
 function addReply(postIndex, commentIndex, content) {
     const author = localStorage.getItem('currentUser');
     const newReply = {
