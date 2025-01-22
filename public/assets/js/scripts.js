@@ -29,39 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showLogin();
     });
 
-    document.getElementById('postForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const title = document.getElementById('title').value;
-        const content = document.getElementById('content').value;
-        const category = document.getElementById('category').value;
-        const author = localStorage.getItem('currentUser') || 'Anonymous';
-    
-        const newPost = {
-            title,
-            content,
-            category,
-            author,
-            date: new Date().toISOString(),
-            comments: []
-        };
-    
-        // Check if the savePost function is defined
-        if (typeof savePost === 'function') {
-            savePost(newPost)
-                .then(() => {
-                    fetchPosts();
-                    document.getElementById('postForm').reset();
-                })
-                .catch(error => {
-                    console.error('Error saving post:', error);
-                    alert('An error occurred while saving the post. Please try again.');
-                });
-        } else {
-            console.error('savePost function is not defined');
-            alert('An error occurred while saving the post. Please try again.');
-        }
-    });
-    
+   
     document.getElementById('logout').addEventListener('click', (e) => {
         e.preventDefault();
         localStorage.removeItem('currentUser');
@@ -201,7 +169,7 @@ function addComment(postIndex, content) {
     
     // Function to save a new post
 function savePost(newPost) {
-    fetch('https://172.21.16.90:4000/api/posts', {
+    return fetch('https://your-public-ip:4000/api/posts', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -214,8 +182,85 @@ function savePost(newPost) {
         }
         console.log('Post created successfully!');
     })
-    .catch(error => console.error('Error saving post:', error));
+    .catch(error => {
+        console.error('Error saving post:', error);
+        throw error;
+    });
 }
+
+document.getElementById('postForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = document.getElementById('title').value;
+    const content = document.getElementById('content').value;
+    const category = document.getElementById('category').value;
+    const author = localStorage.getItem('currentUser') || 'Anonymous';
+
+    const newPost = {
+        title,
+        content,
+        category,
+        author,
+        date: new Date().toISOString(),
+        comments: []
+    };
+
+    savePost(newPost)
+        .then(() => {
+            fetchPosts();
+            document.getElementById('postForm').reset();
+        })
+        .catch(error => {
+            console.error('Error saving post:', error);
+            alert('An error occurred while saving the post. Please try again.');
+        });
+});
+// Function to save a new post
+function savePost(newPost) {
+    return fetch('https://172.21.16.90:4000:4000/api/posts', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newPost),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        console.log('Post created successfully!');
+    })
+    .catch(error => {
+        console.error('Error saving post:', error);
+        throw error;
+    });
+}
+
+document.getElementById('postForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = document.getElementById('title').value;
+    const content = document.getElementById('content').value;
+    const category = document.getElementById('category').value;
+    const author = localStorage.getItem('currentUser') || 'Anonymous';
+
+    const newPost = {
+        title,
+        content,
+        category,
+        author,
+        date: new Date().toISOString(),
+        comments: []
+    };
+
+    savePost(newPost)
+        .then(() => {
+            fetchPosts();
+            document.getElementById('postForm').reset();
+        })
+        .catch(error => {
+            console.error('Error saving post:', error);
+            alert('An error occurred while saving the post. Please try again.');
+        });
+});
 
 
     fetch(`https://172.21.16.90:4000/api/posts/${postIndex}/comments`, {
