@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function fetchPosts() {
-    fetch('https://172.21.16.90:4000/posts')
+    fetch('https://172.21.16.90:4000/api/posts')
         .then(response => response.json())
         .then(posts => {
             const selectedCategory = document.getElementById('filterCategory').value;
@@ -186,7 +186,7 @@ function addComment(postIndex, content) {
         replies: []
     };
 
-    fetch(`https://172.21.16.90:4000/posts/${postIndex}/comments`, {
+    fetch(`https://172.21.16.90:4000/api/posts/${postIndex}/comments`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -206,7 +206,7 @@ function addReply(postIndex, commentIndex, content) {
         date: new Date().toISOString()
     };
 
-    fetch(`https://172.21.16.90:4000/posts/${postIndex}/comments/${commentIndex}/replies`, {
+    fetch(`https://172.21.16.90:4000/api/posts/${postIndex}/comments/${commentIndex}/replies`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
