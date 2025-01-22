@@ -169,7 +169,7 @@ function addComment(postIndex, content) {
     
     // Function to save a new post
 function savePost(newPost) {
-    return fetch('https://your-public-ip:4000/api/posts', {
+    return fetch('https://172.21.16.90:4000:4000/api/posts', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
