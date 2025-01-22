@@ -85,7 +85,6 @@ function login(username, password) {
         alert('An error occurred. Please try again.');
     });
 }
-
 function showLogin() {
     document.getElementById('loginSection').style.display = 'block';
     document.getElementById('signupSection').style.display = 'none';
@@ -112,7 +111,6 @@ function showForum() {
     document.getElementById('showSignup').style.display = 'none';
     document.getElementById('logout').style.display = 'block';
 }
-
 function fetchPosts() {
     fetch('https://172.21.16.90:4000/posts')
         .then(response => response.json())
@@ -232,7 +230,6 @@ function fetchPosts() {
         })
         .catch(error => console.error('Error fetching posts:', error));
 }
-
 // Function to add a comment
 function addComment(postIndex, content) {
     const author = localStorage.getItem('currentUser') || 'Anonymous';
