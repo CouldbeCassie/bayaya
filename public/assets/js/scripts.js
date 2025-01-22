@@ -219,7 +219,7 @@ function addReply(postIndex, commentIndex, content) {
 }
 
 function signup(username, password) {
-    fetch('https://172.21.16.90:4000/signup', {
+    fetch('https://172.21.16.90:4000/api/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -243,7 +243,7 @@ function signup(username, password) {
 }
 
 function login(username, password) {
-    fetch('https://172.21.16.90:4000/login', {
+    fetch('https://172.21.16.90:4000/api/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
