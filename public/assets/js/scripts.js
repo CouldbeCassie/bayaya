@@ -123,6 +123,7 @@ function fetchPosts() {
                 postsContainer.appendChild(postElement);
             });
 
+        
             document.querySelectorAll('.commentForm').forEach(form => {
                 form.addEventListener('submit', (e) => {
                     e.preventDefault();
@@ -185,6 +186,25 @@ function addComment(postIndex, content) {
         date: new Date().toISOString(),
         replies: []
     };
+    
+    // Function to save a new post
+function savePost(newPost) {
+    fetch('https://172.21.16.90:4000/api/posts', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newPost),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        console.log('Post created successfully!');
+    })
+    .catch(error => console.error('Error saving post:', error));
+}
+
 
     fetch(`https://172.21.16.90:4000/api/posts/${postIndex}/comments`, {
         method: 'POST',
