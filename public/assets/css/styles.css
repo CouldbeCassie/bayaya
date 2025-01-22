@@ -25,7 +25,7 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 header {
-    background-color: #5b9c5d;
+    background-color: #4c9e79;
     color: white;
     padding: 1rem;
     text-align: center;
@@ -83,6 +83,7 @@ input, textarea {
     resize: vertical;
     font-family: inherit;
 }
+
 button {
     padding: 0.5rem 1rem;
     background-color: #89db8a;
