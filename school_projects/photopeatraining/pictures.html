@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="sv"> 
+<head>
+    <title>Photopea Before and After</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/CSS/beutiful.css">
+    <link rel="icon" type="image/x-icon" href="/CSS/come.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added for mobile optimization -->
+</head>
+<body>
+    <div class="huvuddiv">
+        <div class="left2">
+            <a href="/school_projects.html">
+                <h4 class="bottom">BACK</h4>
+            </a>
+        </div>
+            <div class="top">
+                <h2>
+                    Photopea!
+                </h2>
+                <div class="bottom">
+                    <p>Pictures before and after!</p>
+                </div>
+            </div>
+    </div>
+        <br><br>
+        <div style="width: 90%;">
+            <div class="top container">
+                <h5>
+                    Monkey
+                </h5>
+                <div class="image-wrapper">
+                    <img src="Apa.png" class="before" id="monkey-before">
+                    <img src="/school_projects/photopeatraining/monkey.png" class="after" id="monkey-after">
+                </div>
+                <div class="button-container">
+                    <button onclick="toggleImage('monkey-before', 'monkey-after')">Toggle</button>
+                </div>
+            </div>
+            <div class="top container">
+                <h5>
+                    Mona Lisa
+                </h5>
+                    <div class="image-wrapper">
+                        <img src="/school_projects/photopeatraining/Mona_Lisa.jpg" class="before" id="mona-before">
+                        <img src="/school_projects/photopeatraining/Mona_Lisaafter.png" class="after" id="mona-after">
+                    </div>
+                    <div class="button-container">
+                        <button onclick="toggleImage('mona-before', 'mona-after')">Toggle</button>
+                    </div>
+            </div>
+            <div class="top container">
+                <h5>
+                    Leaf
+                </h5>
+                <div class="image-wrapper">
+                    <img src="Loev2.png" class="before" id="leaf-before">
+                    <img src="Loev.png" class="after" id="leaf-after">
+                </div>
+                <div class="button-container">
+                    <button onclick="toggleImage('leaf-before', 'leaf-after')">Toggle</button>
+                </div>
+            </div>
+        <div class="top container">
+            <h5>
+                Costa del mucho
+            </h5>
+                <div class="image-wrapper">
+                    <img src="/school_projects/photopeatraining/Costa_del_mucho.jpg" class="before" id="costa-before">
+                    <img src="/school_projects/photopeatraining/Costa_del_mucho (1).jpg" class="after" id="costa-after">
+                </div>
+                    <div class="button-container">
+                        <button onclick="toggleImage('costa-before', 'costa-after')">Toggle</button>
+                    </div>
+        </div>      
+            <div class="bottom">
+                <p>
+                Masking
+                </p>
+            </div>
+            <div class="top container">
+                <h5>
+                    Some dude idk
+                </h5>
+                    <div class="image-wrapper">
+                        <img src="/school_projects/photopeatraining/lilbrobefore.jpg" class="before" id="lilbro-before">
+                        <img src="/school_projects/photopeatraining/lilbro.png" class="after" id="lilbro-after">
+                    </div>
+                <div class="button-container">
+                    <button onclick="toggleImage('lilbro-before', 'lilbro-after')">Toggle</button>
+                </div>
+            </div>
+        </div>
+    <script>
+        function toggleImage(beforeId, afterId) {
+            var beforeImage = document.getElementById(beforeId);
+            var afterImage = document.getElementById(afterId);
+
+            if (afterImage.style.opacity === "0") {
+                afterImage.style.opacity = "1";
+                beforeImage.style.opacity = "0";
+            } else {
+                afterImage.style.opacity = "0";
+                beforeImage.style.opacity = "1";
+            }
+        }
+    </script>
+</body>
+</html>
