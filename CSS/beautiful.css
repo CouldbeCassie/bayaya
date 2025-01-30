@@ -2,7 +2,7 @@
 body {
   background: url('bg_rp2.gif') repeat #b60934;
   color: #c1b492;
-  line-height: 1;
+  line-height: 1.5;
   margin: 0;
   font-family: 'Roboto', sans-serif;
   display: flex;
@@ -31,24 +31,23 @@ a {
 .switch, .switch2 {
   display: flex;
   flex-direction: column;
-  border: solid white 0.004px;
+  border: solid white 1px;
   background: url('bg205.gif') repeat;
   box-shadow: 0 5px 20px rgb(154, 32, 32);
   letter-spacing: 1px;
-  image-rendering: pixelated;
   align-items: center;
   width: 80%; /* Adjust width for consistency */
   margin: 20px; /* Add margin for spacing */
 }
 
 .switch {
-  border-radius: 1% 100%;
+  border-radius: 10% 100%;
   min-height: 50%;
   max-height: 100%;
 }
 
 .switch2 {
-  border-radius: 54% 100% 60%;
+  border-radius: 50% 100% 60%;
   min-height: 50%;
   max-height: 100%;
 }
@@ -56,28 +55,25 @@ a {
 /* Top Container */
 .top {
   background: rgba(143, 113, 113, 0.57) url('bg_rp2.gif') repeat;
-  border: solid 0.00001cqb;
+  border: solid 1px;
   border-radius: 12%;
   width: 80%;
   margin: 20px auto;
   padding: 40px 20px;
   box-shadow: 0 5px 15px;
   letter-spacing: 2px;
-  image-rendering: pixelated;
-  -webkit-font-smoothing: none;
 }
 
 /* Bottom Container */
 .bottom {
   background: transparent url('bg205.gif') repeat;
-  border: solid 0.001cqb;
+  border: solid 1px;
   border-radius: 15%;
   width: 80%;
   margin: 20px auto;
   padding: 20px;
   box-shadow: 0 2.5px 12px;
   letter-spacing: 2px;
-  image-rendering: pixelated;
   text-align: center;
   word-wrap: break-word;
   overflow: hidden;
@@ -153,7 +149,7 @@ a {
 .wrapper nav div li a::after {
   content: "";
   width: 0;
-  height: 0;
+  height: 2px;
   background: #ff0206;
   position: absolute;
   bottom: -8px;
@@ -162,7 +158,7 @@ a {
 }
 
 .wrapper nav div li a:hover::after {
-  height: 100%;
+  width: 100%;
 }
 
 /* Flex Container and Items */
@@ -213,25 +209,25 @@ a {
 /* Responsive Design */
 @media (max-width: 600px) {
   body {
-      font-size: 14px;
-      padding: 10px;
+    font-size: 14px;
+    padding: 10px;
   }
 
   .flex-container {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .flex-item {
-      margin-right: 0;
-      margin-bottom: 12px;
+    margin-right: 0;
+    margin-bottom: 12px;
   }
 
   .top, .bottom, .switch, .switch2 {
-      width: 90%; /* Adjust width for smaller screens */
-      padding: 20px 10px;
+    width: 90%; /* Adjust width for smaller screens */
+    padding: 20px 10px;
   }
 
   .button-container button {
-      padding: 10px 20px;
+    padding: 10px 20px;
   }
 }
