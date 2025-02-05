@@ -47,7 +47,7 @@ a {
 }
 
 .switch2 {
-  border-radius: 50% 100% 60%;
+  border-radius: 50px 100px 60px;
   min-height: 50%;
   max-height: 100%;
 }
@@ -56,7 +56,7 @@ a {
 .top {
   background: rgba(143, 113, 113, 0.57) url('bg_rp2.gif') repeat;
   border: solid 1px;
-  border-radius: 12%;
+  border-radius: 12px;
   width: 80%;
   margin: 20px auto;
   padding: 40px 20px;
@@ -68,8 +68,8 @@ a {
 .bottom {
   background: transparent url('bg205.gif') repeat;
   border: solid 1px;
-  border-radius: 15%;
-  width: 80%;
+  border-radius: 15px;
+  width: fit-content;
   margin: 20px auto;
   padding: 20px;
   box-shadow: 0 2.5px 12px;
