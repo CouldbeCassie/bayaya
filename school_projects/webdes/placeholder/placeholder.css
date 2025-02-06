@@ -1,0 +1,104 @@
+body {
+    background-color: #0c0c0c;
+    color: #e0e0e0;
+    background: url('/CSS/bg205.gif') grey;
+    font-family: 'Courier Prime', monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.glitch {
+    position: relative;
+    animation: glitch 1s infinite;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 2px red;
+  }
+  20% {
+    text-shadow: -2px -2px blue;
+  }
+  40% {
+    text-shadow: 2px 2px green;
+  }
+  60% {
+    text-shadow: -2px -2px yellow;
+  }
+  80% {
+    text-shadow: 2px 2px purple;
+  }
+  100% {
+    text-shadow: -2px -2px pink;
+  }
+}
+
+.doors {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 640px;
+    background: url('/CSS/bg_main2.gif');
+     /* Ensures the doors are centered within a fixed width */
+}
+
+.door, .door2, .door3 {
+    width: 120px;
+    height: 200px; /* Maintain aspect ratio */
+    background-size: cover;
+    cursor: pointer;
+    transition: background-image 0.3s ease;
+    border-radius: 15px;
+}
+
+.door {
+    background-image: url('door.png'); /* Set your closed door image here */
+}
+
+.door:hover {
+    background-image: url('dooropen.png'); /* Set your open door image here */
+}
+
+.door2 {
+    background-image: url('door2.png'); /* Set your closed door image here */
+}
+
+.door2:hover {
+    background-image: url('door2open.png'); /* Set your open door image here */
+}
+
+.door3 {
+    background-image: url('door3.png'); /* Set your closed door image here */
+}
+
+.door3:hover {
+    background-image: url('door3open.png'); /* Set your open door image here */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 550px) {
+    .doors {
+        flex-direction: row;
+        align-items: center;
+        width:  450px;
+        }
+
+    .door, .door2, .door3 {
+        width: 540px;
+        height: 250px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .door, .door2, .door3 {
+        width: 100%;
+    }
+}

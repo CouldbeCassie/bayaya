@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function signup(username, password) {
-    fetch('https://172.21.16.89:4000/signup', {
+    fetch('https://localhost:4000/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ function signup(username, password) {
 }
 
 function login(username, password) {
-    fetch('https://172.21.16.89:4000/login', {
+    fetch('https://localhost:4000/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ function showForum() {
     document.getElementById('logout').style.display = 'block';
 }
 function fetchPosts() {
-    fetch('https://172.21.16.89:4000/posts')
+    fetch('https://localhost:4000/posts')
         .then(response => response.json())
         .then(posts => {
             const selectedCategory = document.getElementById('filterCategory').value;
@@ -239,7 +239,7 @@ function addComment(postIndex, content) {
         date: new Date().toISOString(),
         replies: []
     };
-    fetch(`https://172.21.16.89:4000/posts/${postIndex}/comments`, {
+    fetch(`https://localhost:4000/posts/${postIndex}/comments`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -258,7 +258,7 @@ function addReply(postIndex, commentIndex, content) {
         content,
         date: new Date().toISOString(),
     };
-    fetch(`https://172.21.16.89:4000/posts/${postIndex}/comments/${commentIndex}/replies`, {
+    fetch(`https://localhost:4000/posts/${postIndex}/comments/${commentIndex}/replies`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -271,7 +271,7 @@ function addReply(postIndex, commentIndex, content) {
 
 // Function to save a new post
 function savePost(newPost) {
-    return fetch('https://172.21.16.89:4000/posts', {
+    return fetch('https://localhost:4000/posts', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
