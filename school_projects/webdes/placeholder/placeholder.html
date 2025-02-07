@@ -4,19 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="placeholder.css">
-    <title>Interactive Doors</title>
+    <title>doyoulikehowiwalk</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
-<body>
+<body onload="playBackgroundSound()" class="void">
     <header>
-        <h1 class="glitch"></h1>
     </header>
     <main>
         <section class="doors">
-            <div class="door2" id="door2" onclick="location.href='room1.html'"></div>
-            <div class="door3" id="door3" onclick="location.href='room2.html'"></div>
-            <div class="door" id="door1" onclick="location.href='room3.html'"></div>
+            <div class="door2" id="door2" onmouseover="playSound('sounds/b(door1).mp3')" onmouseout="stopSound()" onclick="zoomAndNavigate('door2', 'room1.html')"></div>
+            <div class="door3" id="door3" onmouseover="playSound('sounds/door3.mp3')" onmouseout="stopSound()" onclick="zoomAndNavigate('door3', 'dea.html')"></div>
+            <div class="door" id="door1" onmouseover="playSound('sounds/cdoor2.mp3')" onmouseout="stopSound()" onclick="zoomAndNavigate('door1', '#')"></div>
         </section>
     </main>
+
+    <audio id="backgroundAudio" src="sounds/ambiance.mp3" loop></audio>
+
+    <script>
+        let hoverAudio = null;
+
+        function playSound(soundFile) {
+            if (hoverAudio) {
+                hoverAudio.pause();
+                hoverAudio.currentTime = 0;
+            }
+            hoverAudio = new Audio(soundFile);
+            hoverAudio.volume = 0.5; // Set hover sound volume (0.0 to 1.0)
+            hoverAudio.play();
+        }
+
+        function stopSound() {
+            if (hoverAudio) {
+                hoverAudio.pause();
+                hoverAudio.currentTime = 0;
+                hoverAudio = null;
+            }
+        }
+
+        function playBackgroundSound() {
+            var backgroundAudio = document.getElementById('backgroundAudio');
+            backgroundAudio.volume = 1.0; // Set background volume (0.0 to 1.0)
+            backgroundAudio.play();
+        }
+
+        function playClickSound() {
+            var clickAudio = new Audio('sounds/enteringadoor.mp3');
+            clickAudio.volume = 0.3; // Set click sound volume (0.0 to 1.0) - Lowered volume
+            clickAudio.play();
+        }
+
+        function zoomAndNavigate(doorId, url) {
+            playClickSound();
+            stopSound(); // Stop hover sound when clicking
+            var door = document.getElementById(doorId);
+            door.classList.add('zoom');
+            door.style.transform = 'scale(3.6)';
+            setTimeout(function() {
+                window.location.href = url;
+            }, 2300); // Adjust the delay time as needed
+        }
+    </script>
 </body>
 </html>

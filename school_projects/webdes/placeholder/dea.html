@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="placeholder.css">
+    <title>manti</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body onload="zoomOutEffect(); playBackgroundSound();" class="white">
+    <main id="roomContent" class="room1">
+        <div class="room1">
+            <div class="zoom-out-door3" id="zoomOutDoor3" onmouseover="playSound('sounds/door3.mp3')" onmouseout="stopSound()"></div>
+        </div>
+    </main>
+    <audio id="backgroundAudio" src="sounds/ambiance.mp3" loop></audio>
+    <script>
+        function zoomOutEffect() {
+            var doorDiv = document.getElementById('zoomOutDoor3');
+            doorDiv.classList.add('zoom-out');
+        }
+
+        let hoverAudio = null;
+
+        function playSound(soundFile) {
+            if (hoverAudio) {
+                hoverAudio.pause();
+                hoverAudio.currentTime = 0;
+            }
+            hoverAudio = new Audio(soundFile);
+            hoverAudio.volume = 0.5; // Set hover sound volume (0.0 to 1.0)
+            hoverAudio.play();
+        }
+
+        function stopSound() {
+            if (hoverAudio) {
+                hoverAudio.pause();
+                hoverAudio.currentTime = 0;
+                hoverAudio = null;
+            }
+        }
+
+        function playBackgroundSound() {
+            var backgroundAudio = document.getElementById('backgroundAudio');
+            backgroundAudio.volume = 1.0; // Set background volume (0.0 to 1.0)
+            backgroundAudio.play();
+        }
+    </script>
+</body>
+</html>

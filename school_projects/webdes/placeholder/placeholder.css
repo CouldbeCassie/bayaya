@@ -1,7 +1,6 @@
 body {
-    background-color: #0c0c0c;
+    background-color: #000000;
     color: #e0e0e0;
-    background: url('/CSS/bg205.gif') grey;
     font-family: 'Courier Prime', monospace;
     display: flex;
     flex-direction: column;
@@ -9,6 +8,41 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+}
+.white{
+    background: url('room3.gif') center;
+}
+.void{
+    background: url('/CSS/bg205.gif');
+}
+.zoom-out-door, .zoom-out-door3 {
+    width: 350px;
+    height: 450px;
+    background-size: cover;
+    transform: scale(2.6); /* Start at 3.6x zoom */
+    transition: transform 2s ease-in-out;
+}
+
+.zoom-out-door {
+    background-image: url('door2.png'); /* Change this to the appropriate door image */
+}
+
+.zoom-out-door:hover {
+    background-image: url('door2open.png');
+    cursor: pointer;
+}
+
+.zoom-out-door3 {
+    background-image: url('door3.png'); /* Change this to the appropriate door image */
+}
+
+.zoom-out-door3:hover {
+    background-image: url('door3open.png');
+    cursor: pointer;
+}
+
+.zoom-out {
+    transform: scale(1); /* Zoom to original size */
 }
 
 .glitch {
@@ -20,80 +54,74 @@ body {
 }
 
 @keyframes glitch {
-  0% {
-    text-shadow: 2px 2px red;
-  }
-  20% {
-    text-shadow: -2px -2px blue;
-  }
-  40% {
-    text-shadow: 2px 2px green;
-  }
-  60% {
-    text-shadow: -2px -2px yellow;
-  }
-  80% {
-    text-shadow: 2px 2px purple;
-  }
-  100% {
-    text-shadow: -2px -2px pink;
-  }
+  0% { text-shadow: 2px 2px red; }
+  20% { text-shadow: -2px -2px blue; }
+  40% { text-shadow: 2px 2px green; }
+  60% { text-shadow: -2px -2px yellow; }
+  80% { text-shadow: 2px 2px purple; }
+  100% { text-shadow: -2px -2px pink; }
 }
 
 .doors {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 610px;   
+    border-radius: 100% 0.5px;
+    width: 450px;
+    height: 300px;   
     background: url('/CSS/bg_main2.gif');
-     /* Ensures the doors are centered within a fixed width */
 }
 
 .door, .door2, .door3 {
-    width: 120px;
-    height: 10px; /* Maintain aspect ratio */
+    width: 1200px;
+    height: 250px;
     background-size: cover;
     cursor: pointer;
-    transition: background-image 0.3s ease;
+    transition: background-image 0.3s ease, transform 2s ease-in-out;
     border-radius: 15px;
 }
 
 .door {
-    background-image: url('door.png'); /* Set your closed door image here */
+    background-image: url('door.png');
 }
 
 .door:hover {
-    background-image: url('dooropen.png'); /* Set your open door image here */
+    background-image: url('dooropen.png');
 }
 
 .door2 {
-    background-image: url('door2.png'); /* Set your closed door image here */
+    background-image: url('door2.png');
 }
 
 .door2:hover {
-    background-image: url('door2open.png'); /* Set your open door image here */
+    background-image: url('door2open.png');
 }
 
 .door3 {
-    background-image: url('door3.png'); /* Set your closed door image here */
+    background-image: url('door3.png');
 }
 
 .door3:hover {
-    background-image: url('door3open.png'); /* Set your open door image here */
+    background-image: url('door3open.png');
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 550px) {
     .doors {
         flex-direction: row;
         align-items: center;
-        width:  450px;
-        }
+        width: 450px;
+    }
 
     .door, .door2, .door3 {
-        width: 540px;
+        width: 140px;
         height: 250px;
         margin-bottom: 20px;
+    }
+
+    .zoom-out-door, .zoom-out-door3 {
+        width: 250px;
+        height: 350px;
+        margin: 20px;
     }
 }
 
@@ -101,4 +129,19 @@ body {
     .door, .door2, .door3 {
         width: 100%;
     }
+}
+.room1 {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.therooms {
+    background-color: rgba(95, 63, 63, 0.715);
+    border-radius: 20px 20px 20px rgb(0, 0, 0);
+    width: 80px;
+    height: 450px;
+}
+.room {
+    background: url('/CSS/bg205.gif');
+    box-shadow: -10px -10px 50px rgb(116, 15, 15);
+    margin: 10px 10px 10px 50px;
 }
