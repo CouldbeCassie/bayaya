@@ -145,3 +145,10 @@ body {
     box-shadow: -10px -10px 50px rgb(116, 15, 15);
     margin: 5px 5px 5px 5px;
 }
+.c{
+    opacity: 0;
+}
+.c:hover{
+    opacity: 1;
+    
+}
