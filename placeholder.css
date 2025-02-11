@@ -15,7 +15,7 @@ body {
 .void{
     background: url('/CSS/bg205.gif');
 }
-.zoom-out-door, .zoom-out-door3 {
+.zoom-out-door, .zoom-out-door3, .zoom-out-door2 {
     width: 350px;
     height: 450px;
     background-size: cover;
@@ -31,7 +31,14 @@ body {
     background-image: url('door2open.png');
     cursor: pointer;
 }
+.zoom-out-door2 {
+    background-image: url('door.png'); /* Change this to the appropriate door image */
+}
 
+.zoom-out-door2:hover {
+    background-image: url('dooropen.png');
+    cursor: pointer;
+}
 .zoom-out-door3 {
     background-image: url('door3.png'); /* Change this to the appropriate door image */
 }
@@ -118,11 +125,12 @@ body {
         margin-bottom: 20px;
     }
 
-    .zoom-out-door, .zoom-out-door3 {
+    .zoom-out-door, .zoom-out-door3, .zoom-out-door2{
         width: 250px;
         height: 350px;
         margin: 20px;
     }
+    
 }
 
 @media (max-width: 500px) {
