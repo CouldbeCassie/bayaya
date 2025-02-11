@@ -146,13 +146,13 @@ body {
 .therooms {
     background-color: rgba(95, 63, 63, 0.715);
     border-radius: 20px 20px 20px rgb(0, 0, 0);
-    width: 80px;
-    height: 450px;
+    width: 90px;
+    height: 500px;
 }
 .room {
     background: url('/CSS/bg205.gif');
     box-shadow: -10px -10px 50px rgb(116, 15, 15);
-    margin: 5px 5px 5px 5px;
+    margin: 10px 10px 10px 10px;
 }
 .c{
     opacity: 0;
