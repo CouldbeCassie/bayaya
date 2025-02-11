@@ -2,6 +2,7 @@ body {
     background-color: #000000;
     color: #e0e0e0;
     font-family: 'Courier Prime', monospace;
+    user-select: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
