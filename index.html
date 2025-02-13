@@ -7,7 +7,7 @@
     <title>Choice</title>
     <link rel="icon" href="CSS/come.png" type="image/x-icon">
 </head>
-<body onload="playBackgroundSound()" class="void">
+<body class="void">
     <header>
     </header>
     <main>
@@ -62,6 +62,9 @@
                 window.location.href = url;
             }, 2300); // Adjust the delay time as needed
         }
+
+        // Add an event listener for user interaction to play background sound
+        document.addEventListener('click', playBackgroundSound);
     </script>
 </body>
 </html>
