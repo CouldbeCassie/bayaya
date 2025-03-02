@@ -11,6 +11,12 @@
     <header>
     </header>
     <main>
+        <div>
+            <a href="parangel.html">
+                <div class="button">
+                </div>
+            </a>
+        </div>
         <section class="doors">
             <div class="door2" id="door2" onmouseover="playSound('sounds/b(door1).mp3')" onmouseout="stopSound()" onclick="zoomAndNavigate('door2', 'reset.html')"></div>
             <div class="door3" id="door3" onmouseover="playSound('sounds/door3.mp3')" onmouseout="stopSound()" onclick="zoomAndNavigate('door3', 'dea.html')"></div>
@@ -28,7 +34,7 @@
                 hoverAudio.currentTime = 0;
             }
             hoverAudio = new Audio(soundFile);
-            hoverAudio.volume = 0.5; // Set hover sound volume (0.0 to 1.0)
+            hoverAudio.volume = 0.5; 
             hoverAudio.play();
         }
 
@@ -48,7 +54,7 @@
 
         function playClickSound() {
             var clickAudio = new Audio('sounds/enteringadoor.mp3');
-            clickAudio.volume = 0.3; // Set click sound volume (0.0 to 1.0) - Lowered volume
+            clickAudio.volume = 0.3;
             clickAudio.play();
         }
 
@@ -60,7 +66,7 @@
             door.style.transform = 'scale(3.6)';
             setTimeout(function() {
                 window.location.href = url;
-            }, 2300); // Adjust the delay time as needed
+            }, 2300); 
         }
 
         // Add an event listener for user interaction to play background sound

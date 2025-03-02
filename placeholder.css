@@ -10,10 +10,32 @@ body {
     height: 100vh;
     margin: 0;
 }
-.white{
+a{
+    text-decoration:solid;
+    color: white;
+}
+
+.button{
+    border: ridge rgb(176, 94, 142) 10px;
+    border-radius: 50px;
+    background: rgba(81, 12, 73, 0.557);
+    width: fit-content;
+    padding: 2.5px 2.5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.button:hover{
+    border: ridge rgb(124, 45, 128) 10px;
+    border-radius: 50px;
+    background: rgba(255, 138, 241, 0.557);
+    width: fit-content;
+    padding: 5px 5px;
+    color: black;
+}
+.white {
     background: url('room3.gif') center;
 }
-.void{
+.void {
     background: url('/CSS/bg205.gif');
 }
 .zoom-out-door, .zoom-out-door3, .zoom-out-door2 {
@@ -62,12 +84,12 @@ body {
 }
 
 @keyframes glitch {
-  0% { text-shadow: 2px 2px red; }
-  20% { text-shadow: -2px -2px blue; }
-  40% { text-shadow: 2px 2px green; }
-  60% { text-shadow: -2px -2px yellow; }
-  80% { text-shadow: 2px 2px purple; }
-  100% { text-shadow: -2px -2px pink; }
+    0% { text-shadow: 2px 2px red; }
+    20% { text-shadow: -2px -2px blue; }
+    40% { text-shadow: 2px 2px green; }
+    60% { text-shadow: -2px -2px yellow; }
+    80% { text-shadow: 2px 2px purple; }
+    100% { text-shadow: -2px -2px pink; }
 }
 
 .doors {
@@ -77,7 +99,7 @@ body {
     border-radius: 100% 0.5px;
     width: 450px;
     height: 300px;   
-    background: url('/CSS/lainmad.gif ') no-repeat;
+    background: url('/CSS/lainmad.gif') no-repeat;
 }
 
 .door, .door2, .door3 {
@@ -119,19 +141,28 @@ body {
         align-items: center;
         width: 450px;
     }
-
+    .stairs2 {
+        width: 500px;
+        height: 550px;
+        display: flex; /* Added flex display */
+        justify-content: center; /* Center the child elements */
+        align-items: center; /* Center the child elements */
+    }
+    .stairs {
+        width: 450px;
+        height: 250px;
+    }
     .door, .door2, .door3 {
         width: 240px;
         height: 250px;
         margin-bottom: 20px;
     }
 
-    .zoom-out-door, .zoom-out-door3, .zoom-out-door2{
+    .zoom-out-door, .zoom-out-door3, .zoom-out-door2 {
         width: 250px;
         height: 350px;
         margin: 20px;
     }
-    
 }
 
 @media (max-width: 500px) {
@@ -141,7 +172,7 @@ body {
 }
 .room1 {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
 }
 .therooms {
     background-color: rgba(95, 63, 63, 0.715);
@@ -154,13 +185,12 @@ body {
     box-shadow: -10px -10px 50px rgb(116, 15, 15);
     margin: 10px 10px 10px 10px;
 }
-.c{
+.c {
     opacity: 0;
 }
-.c:hover{
+.c:hover {
     opacity: 1;
-    
 }
-.meow{
-    background: url(witness.gif);
+.meow {
+    background: url('witness.gif');
 }
