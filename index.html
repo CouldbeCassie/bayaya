@@ -76,13 +76,13 @@
     const audioFiles = ['sounds/1.mp3', 'sounds/2.mp3', 'sounds/3.mp3']; // Replace with your audio file paths
     const randomIndex = Math.floor(Math.random() * audioFiles.length);
     const audio = new Audio(audioFiles[randomIndex]);
-    audio.volume = 0.4; // Set volume to the maximum value
+    audio.volume = 1; 
     console.log(`Playing: ${audioFiles[randomIndex]}`); // Log which audio file is being played
     audio.play().catch(error => console.error('Audio playback failed:', error));
 }
 
 function startPlayingSounds() {
-    setInterval(playRandomAudio, Math.random() * 4000 + 5000); // Random interval between 4 and 5 seconds
+    setInterval(playRandomAudio, Math.random() * 3000 + 6000); // Random interval between 4 and 5 seconds
 }
 
 startPlayingSounds();
