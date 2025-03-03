@@ -5,7 +5,8 @@ body {
     width: 100%; /* Ensures the body takes the full width */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
     margin: 0; /* Remove default margin */
-    padding: 25px
+    padding: 25px;
+    color: rgb(164, 51, 109);
 }
 
 /*header area*/
@@ -62,10 +63,12 @@ nav {
 
 .dropdown:hover .dropbtn {
     background-color: #c259b1;
+    color: rgb(231, 124, 180);
 }
 
 button:hover {
     background-color: #c259b1;
+    color: rgb(230, 112, 202);
 }
 
 /*dropdown end*/
