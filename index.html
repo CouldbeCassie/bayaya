@@ -48,7 +48,7 @@
 
         function playBackgroundSound() {
             var backgroundAudio = document.getElementById('backgroundAudio');
-            backgroundAudio.volume = 1.0; // Set background volume (0.0 to 1.0)
+            backgroundAudio.volume = 0.4; // Set background volume (0.0 to 1.0)
             backgroundAudio.play();
         }
 
@@ -71,6 +71,20 @@
 
         // Add an event listener for user interaction to play background sound
         document.addEventListener('click', playBackgroundSound);
+
+        // Play random audio files at random intervals
+        function playRandomAudio() {
+            const audioFiles = ['1.mp3', '2.mp3', '3.mp3']; // Replace with your audio file paths
+            const randomIndex = Math.floor(Math.random() * audioFiles.length);
+            const audio = new Audio(audioFiles[randomIndex]);
+            audio.play();
+        }
+
+        function startPlayingSounds() {
+            setInterval(playRandomAudio, Math.random() * 4000 + 5000); // Random interval between 4 and 5 seconds
+        }
+
+        startPlayingSounds();
     </script>
 </body>
 </html>
