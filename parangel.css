@@ -1,10 +1,10 @@
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background: lavenderblush;
-    min-height: 100vh; /* Ensures the body takes at least the full viewport height */
-    width: 100%; /* Ensures the body takes the full width */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    margin: 0; /* Remove default margin */
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
     padding: 25px;
     color: rgb(182, 47, 117);
     font-size: large;
@@ -86,7 +86,7 @@ button:hover {
 
 .information {
     width: fit-content;
-    position: relative; /* Ensure positioning context for child elements */
+    position: relative;
 }
 
 .infotag {
@@ -95,7 +95,7 @@ button:hover {
     border-radius: 20px;
     width: fit-content;
     z-index: 1;
-    position:absolute; /* Position absolutely relative to the parent .information */
+    position: absolute;
     left: 0;
 }
 
@@ -109,20 +109,132 @@ button:hover {
     display: block;
 }
 
-/* Hide infotag when not hovering over .info */
-.information:hover .infotag {
+/* Image Slider */
+.slider {
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ccc;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.slide {
+    flex: 0 0 23%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.slide img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.slider input[type="radio"] {
     display: none;
 }
-/*i hate this this will be used alot*/
-footer{
-    background-color: rgba(249, 117, 187, 0.511);
-    margin: 0px;
-    padding: 5px 5px 5px 10px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+
+.slider label {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 3px;
+    cursor: pointer;
 }
-.footer{
-    background: #ec82cb80;
-    margin: 5px;
+
+/* Default sliding transform */
+input#slide1:checked ~ .slides {
+    transform: translateX(0%);
+}
+
+input#slide2:checked ~ .slides {
+    transform: translateX(calc(-100% - 40px));
+}
+
+input#slide3:checked ~ .slides {
+    transform: translateX(calc(-200% - 80px));
+}
+
+input#slide4:checked ~ .slides {
+    transform: translateX(calc(-300% - 120px));
+}
+
+/* Navigation Dots */
+.slider-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.slider-nav label {
+    margin: 0 3px;
+}
+
+input#slide1:checked ~ .slider-nav label[for="slide1"],
+input#slide2:checked ~ .slider-nav label[for="slide2"],
+input#slide3:checked ~ .slider-nav label[for="slide3"],
+input#slide4:checked ~ .slider-nav label[for="slide4"] {
+    background-color: #a20798;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .slide {
+        flex: 0 0 48%;
+        margin: 0 5px;
+    }
+
+    input#slide1:checked ~ .slides {
+        transform: translateX(0%);
+    }
+
+    input#slide2:checked ~ .slides {
+        transform: translateX(calc(-100% - 20px));
+    }
+
+    input#slide3:checked ~ .slides {
+        transform: translateX(calc(-200% - 40px));
+    }
+
+    input#slide4:checked ~ .slides {
+        transform: translateX(calc(-300% - 60px));
+    }
+}
+
+@media (max-width: 480px) {
+    .slide {
+        flex: 0 0 100%;
+        margin: 0;
+    }
+
+    input#slide1:checked ~ .slides {
+        transform: translateX(0%);
+    }
+
+    input#slide2:checked ~ .slides {
+        transform: translateX(-100%);
+    }
+
+    input#slide3:checked ~ .slides {
+        transform: translateX(-200%);
+    }
+
+    input#slide4:checked ~ .slides {
+        transform: translateX(-300%);
+    }
 }

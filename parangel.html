@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="parangel.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>parangel</title>
+    <title>Parangel</title>
+    <link rel="stylesheet" href="parangel.css">
 </head>
 <body>
 <header>
@@ -34,8 +34,8 @@
                     <a href="#">Ghost</a>
                 </div>
             </div>
-             <button>Info</button>
-             <button>About us</button>
+            <button>Info</button>
+            <button>About us</button>
         </div>
     </nav>
 </div>
@@ -50,30 +50,76 @@
 <hr>
 <section>
     <h2>Titlecard</h2>
-        This is the first section of the main content.
-        So many words will but inserted here oh my thats crazy like, can you imagine? Many words together!! It's crazy
-    </p>
+    <p>This is the first section of the main content. So many words will be inserted here, oh my, that's crazy, like, can you imagine? Many words together!! It's crazy</p>
     <p>
         <div class="information">
-            <a  href="#" class="info">Link with short infromation on hover.</a>
+            <a href="#" class="info">Link with short information on hover.</a>
             <div class="infotag">
-                <p>Woah tou dont really need to click to figure this out? But the information will be short so u gotta click to leearn more</p> 
+                <p>Woah, you don't really need to click to figure this out? But the information will be short, so you gotta click to learn more</p>
             </div> 
-        </div>  Nested section in a section (paragraph break).
-    <div class="information">
-        <a href="#" class="info">Madoka</a>. Crazy chick man
-        <div class="infotag">
-            <p>Madoka is a magical girl click to read more</p>
+        </div> Nested section in a section (paragraph break).
+        <div class="information">
+            <a href="#" class="info">Madoka</a>. Crazy chick, man
+            <div class="infotag">
+                <p>Madoka is a magical girl, click to read more</p>
+            </div>
         </div>
-    </div>And then a massive cat turned into a pink cat that grants wishes what?!?!?!??!! 
+        And then a massive cat turned into a pink cat that grants wishes, what?!?!?!??!!
     </p>
-    <p>
-        And now  we reached the end. All redirects all together:
-    </p>
-        <ul>
-            <li><a href="#">example 1</a></li>
-            <li><a href="#"> example 2</a></li>
-        </ul>
+    <p>And now we reached the end. All redirects all together:</p>
+    <ul>
+        <li><a href="#">example 1</a></li>
+        <li><a href="#">example 2</a></li>
+    </ul>
+</section>
+<hr>
+<section>
+    <h5>Images?</h5>
+    <div class="slider" id="slider">
+        <input type="radio" name="slider" id="slide1" checked>
+        <input type="radio" name="slider" id="slide2">
+        <input type="radio" name="slider" id="slide3">
+        <input type="radio" name="slider" id="slide4">
+
+        <div class="slides">
+            <div class="slide"><img src="/CSS/come.png" alt="Scenic view 1"></div>
+            <div class="slide"><img src="/CSS/come.png" alt="Scenic view 2"></div>
+            <div class="slide"><img src="/CSS/come.png" alt="Scenic view 3"></div>
+            <div class="slide"><img src="/CSS/come.png" alt="Scenic view 4"></div>
+        </div>
+
+        <div class="slider-nav">
+            <label for="slide1"></label>
+            <label for="slide2"></label>
+            <label for="slide3"></label>
+            <label for="slide4"></label>
+        </div>
+    </div>
+
+    <script>
+        function checkSlider() {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelector('.slides');
+            const slideCount = slides.children.length;
+            const slideWidth = slides.children[0].offsetWidth;
+            const totalSlideWidth = (slideWidth + 20) * slideCount; // 20px includes padding and margin
+
+            if (totalSlideWidth <= slider.offsetWidth) {
+                // If all slides fit within the container, disable sliding
+                slider.querySelectorAll('input[type="radio"]').forEach(input => input.style.display = 'none');
+                slider.querySelectorAll('label').forEach(label => label.style.display = 'none');
+                slides.style.transform = 'none';
+                slides.style.justifyContent = 'space-evenly';
+            } else {
+                // Enable sliding if slides do not fit
+                slider.querySelectorAll('label').forEach(label => label.style.display = 'block');
+                slides.style.justifyContent = 'unset';
+            }
+        }
+
+        window.addEventListener('load', checkSlider);
+        window.addEventListener('resize', checkSlider);
+    </script>
 </section>
 
 <hr>
