@@ -1,19 +1,20 @@
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background: lavenderblush;
+    background: #feeefc;
     min-height: 100vh;
     width: 100%;
     box-sizing: border-box;
     margin: 0;
     padding: 25px;
-    color: rgb(182, 47, 117);
+    color: #e75480;
     font-size: large;
 }
 
 /*header area*/
 .navigation {
-    background: rgb(248, 174, 224);
+    background: #ffccd5;
     padding: 25px 15px 25px 15px;
+    border-radius: 25px;
 }
 
 nav {
@@ -31,9 +32,9 @@ nav {
 }
 
 .dropbtn, button {
-    background-color: #6b145c;
+    background-color: #ff69b4;
     border-radius: 50px;
-    color: rgb(244, 218, 235);
+    color: #fff0f5;
     padding: 10px;
     font-size: 16px;
     border: none;
@@ -43,7 +44,7 @@ nav {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: #ffe4e1;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -57,7 +58,7 @@ nav {
 }
 
 .dropdown-content a:hover {
-    background-color: #ff82cf;
+    background-color: #ffb3c6;
 }
 
 .dropdown:hover .dropdown-content {
@@ -65,20 +66,20 @@ nav {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #c259b1;
-    color: rgb(231, 124, 180);
+    background-color: #db7093;
+    color: #ffe4e1;
 }
 
 button:hover {
-    background-color: #c259b1;
-    color: rgb(230, 112, 202);
+    background-color: #db7093;
+    color: #ffe4e1;
 }
 
 /*dropdown end*/
 /*header area end*/
 .info {
     text-decoration: underline;
-    color: #e16cbe;
+    color: #e75480;
     border: none;
     cursor: pointer;
     font-size: 19px;
@@ -91,7 +92,7 @@ button:hover {
 
 .infotag {
     display: none;
-    background-color: #fec8e5;
+    background-color: #feeefc;
     border-radius: 20px;
     width: fit-content;
     z-index: 1;
@@ -109,7 +110,7 @@ button:hover {
     display: block;
 }
 .ooo{
-    background: pink;
+    background: #ffd1dc;
     border-radius: 25px;
     padding: 15px;
     width: fit-content;
@@ -124,8 +125,8 @@ button:hover {
     position: relative;
     padding: 2px 2px 10px 2px;
     border-radius: 20px;
-    box-shadow: 0px -10px 1px rgb(248, 225, 239);
-    border: 2px solid rgb(252, 200, 227);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ffccd5;
 }
 
 .slides {
@@ -158,7 +159,7 @@ button:hover {
     display: inline-block;
     width: 100%;
     height: 10px;
-    background-color: #ccc;
+    background-color: #ffe4e1;
     border-radius: 50px;
     margin: 3px;
     cursor: pointer;
@@ -188,7 +189,7 @@ input#slide1:checked ~ .slider-nav label[for="slide1"],
 input#slide2:checked ~ .slider-nav label[for="slide2"],
 input#slide3:checked ~ .slider-nav label[for="slide3"],
 input#slide4:checked ~ .slider-nav label[for="slide4"] {
-    background-color: #a20798;
+    background-color: #ff69b4;
 }
 
 /* Media Queries */
