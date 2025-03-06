@@ -41,15 +41,28 @@
 </div>
 <hr>
 <main>
-    <p>About the website really short</p>
+    <h1>About us!:</h1>
     <section>
-        The short explanation <---
+        <p class="ooo">
+            Welcome to Parangel. 
+            Our website dives deep into the world of paranormal phenomena, 
+            offering comprehensive explanation, little scientific insights, 
+            and compelling narratives about ghostly encounters, 
+            mysterious events, and other unexplained occurrences. 
+            This platform is designed to cater those intressted, 
+            providing balanced and thoughtful content that aims to enlighten and intrigue. 
+            With a blend of scientific analysis and fascinating stories, we explore the mysteries that lie beyond the ordinary, 
+            inviting you to join us on a journey into the unknown. 
+            Whether you're seeking rational explanations or looking to delve into the eerie and enigmatic, 
+            our guide offers a captivating and informative exploration of the paranormal, 
+            sparking curiosity and a sense of wonder in every visitor.
+        </p>
     </section>
-    <p>thank you</p>
+    <p>thank you for reading!</p>
 </main>
 <hr>
 <section>
-    <h2>Titlecard</h2>
+    <h2 class="ooo">Titlecard</h2>
     <p>This is the first section of the main content. So many words will be inserted here, oh my, that's crazy, like, can you imagine? Many words together!! It's crazy</p>
     <p>
         <div class="information">
@@ -91,8 +104,6 @@
         <div class="slider-nav">
             <label for="slide1"></label>
             <label for="slide2"></label>
-            <label for="slide3"></label>
-            <label for="slide4"></label>
         </div>
     </div>
 
@@ -102,7 +113,7 @@
             const slides = document.querySelector('.slides');
             const slideCount = slides.children.length;
             const slideWidth = slides.children[0].offsetWidth;
-            const totalSlideWidth = (slideWidth + 20) * slideCount; // 20px includes padding and margin
+            const totalSlideWidth = (slideWidth + 20 ) * slideCount; // 20px includes padding and margin
 
             if (totalSlideWidth <= slider.offsetWidth) {
                 // If all slides fit within the container, disable sliding
@@ -113,7 +124,7 @@
             } else {
                 // Enable sliding if slides do not fit
                 slider.querySelectorAll('label').forEach(label => label.style.display = 'block');
-                slides.style.justifyContent = 'unset';
+                slides.style.justifyContent = 'space-evenly';
             }
         }
 
