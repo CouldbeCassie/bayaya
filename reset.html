@@ -10,17 +10,17 @@
 <body onload="zoomOutEffect(); playBackgroundSound();">
     <main id="roomContent" class="room1">
         <div class="room1">
-        <section class="room">
-        <div class="therooms">
-            <p class="c">
-                What will you try to change this time?
-            </p>
-        </div>
-        </section>
-        <div class="zoom-out-door" id="zoomOutDoor"  onmouseover="playSound('sounds/cdoor2.mp3')" onmouseout="stopSound()"></div>
-        <section class="room">
-            <div class="therooms">
-            </div>
+            <section class="room">
+                <div class="therooms">
+                    <p class="c">
+                        What will you try to change this time?
+                    </p>
+                </div>
+            </section>
+            <img src="door2.png" style="min-width: 250px; max-width:350px; cursor: pointer;" onclick="playSound('sounds/lock.mp3')">
+            <section class="room">
+                <div class="therooms">
+                </div>
             </section>
         </div>  
     </main>
@@ -29,7 +29,9 @@
     <script>
         function zoomOutEffect() {
             var doorDiv = document.getElementById('zoomOutDoor');
-            doorDiv.classList.add('zoom-out');
+            if (doorDiv) {
+                doorDiv.classList.add('zoom-out');
+            }
         }
 
         let hoverAudio = null;
@@ -54,8 +56,10 @@
 
         function playBackgroundSound() {
             var backgroundAudio = document.getElementById('backgroundAudio');
-            backgroundAudio.volume = 1.0; // Set background volume (0.0 to 1.0)
-            backgroundAudio.play();
+            if (backgroundAudio) {
+                backgroundAudio.volume = 1.0; // Set background volume (0.0 to 1.0)
+                backgroundAudio.play();
+            }
         }
     </script>
 </body>
