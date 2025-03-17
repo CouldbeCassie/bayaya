@@ -195,3 +195,15 @@ a{
 .meow {
     background: url('witness.gif');
 }
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    60% {
+        transform: translateY(-15px); /* Adjust the floating height */
+    }
+}
+
+.float-img {
+    animation: float 2s ease-in-out infinite; /* Apply the animation only to this class */
+}
