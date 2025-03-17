@@ -92,8 +92,8 @@ button:hover {
 
 .infotag {
     display: none;
-    background-color: #feeefc;
-    border-radius: 20px;
+    background-color: #ffddfa;
+    border-radius: 25px;
     width: fit-content;
     z-index: 1;
     position: absolute;
