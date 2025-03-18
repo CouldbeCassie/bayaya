@@ -87,6 +87,14 @@ function startPlayingSounds() {
 
 startPlayingSounds();
 
+// Add this script to your webpage
+window.addEventListener("pageshow", function(event) {
+  if (event.persisted) {
+    // Force a reload if the page is loaded from the browser's cache
+    window.location.reload();
+  }
+});
+
     </script>
 </body>
 </html>
