@@ -207,3 +207,57 @@ a{
 .float-img {
     animation: float 2s ease-in-out infinite; /* Apply the animation only to this class */
 }
+/* Styling for the eyes in the background */
+.eyes-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px; /* Space between eyes */
+    opacity: 0.2; /* Make the eyes subtle */
+    pointer-events: none; /* Unselectable */
+    z-index: -1; /* Push to background */
+    user-select: none;
+}
+
+.eye {
+    width: 100px; /* Eye size */
+    height: 100px;
+    background: radial-gradient(circle at center, #ffe6e6, #ffffff); /* Slight reddish sclera */
+    border: 2px solid black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iris {
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, #4682b4, #1e3a5f); /* Realistic iris texture */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pupil {
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.highlight {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    top: 25%;
+    left: 25%;
+}
