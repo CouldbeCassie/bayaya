@@ -1,0 +1,154 @@
+:root {
+    font-size: 16px;
+    --dark-brown: #59363c;
+    --accent: rgb(247, 0, 0);
+    /* --light-pink: #fdb6f0; */
+    --light-pink: #ffeffc;
+    --background: var(--light-pink);
+    --background-secondary: whitesmoke;
+    --text: var(--dark-brown);
+    word-spacing: 1rem;
+    letter-spacing: -0.08em;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    color: var(--text);
+	vertical-align: baseline;
+}
+
+html,
+body {
+    scroll-behavior: smooth;
+    margin: 0;
+}
+
+h1 {
+    margin: 0;
+    font-style: italic;
+    font-family: serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 5rem;
+    text-align: center;
+}
+
+h2 {
+    margin: 0;
+    font-weight: 400;
+}
+
+h2,
+h3,
+h4 {
+    position: relative;
+    font-size: 1.125rem;
+    display: inline;
+    text-transform: uppercase;
+}
+
+h3 {
+    margin: 0;
+    font-weight: 400;
+}
+
+h4 {
+    font-weight: 400;
+    margin: 0;
+    font-family: serif;
+    font-style: italic;
+    display: inline-block;
+}
+
+p,
+li,
+ul,
+button[type="submit"],
+label {
+    margin: 0;
+    letter-spacing: -0.03em;
+    word-spacing: 0.375rem;
+    line-height: 133%;
+    font-size: 1.25rem;
+}
+
+a {
+    font-size: inherit;
+}
+
+a,
+a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+a:hover,
+a:hover *,
+a:focus,
+a:focus *,
+a:active,
+a:active * {
+    color: var(--accent);
+}
+
+em {
+    font-style: italic;
+    font-family: serif;
+    font-weight: normal;
+}
+
+em, span {
+    font-size: inherit;
+}
+
+h3 span {
+    font-family: inherit;
+}
+
+iframe {
+    border: none;
+    transform-origin: 0 0;
+    pointer-events: none;
+    z-index: 100;
+    position: relative;
+    overflow: hidden;
+}
+
+.iframe__container {
+    position: relative;
+    overflow: hidden;
+}
+
+footer a {
+    display: inline;
+    margin: 0 0 3vh 0;
+    width: min-content;
+    text-transform: uppercase;
+    font-size: 1.125rem;
+}
+
+.show-mobile {
+    display: none;
+}
+
+.hide-mobile {
+    display: block;
+}
+
+@media screen and (max-width: 1000px) {
+    h1 {
+        font-size: 4rem;
+    }
+
+    .show-mobile {
+        display: block;
+    }
+
+    .hide-mobile {
+        display: none;
+    }
+    footer a {
+        font-size: 1.25rem;
+    }
+}
