@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .details-main {
+            max-width: 540px;
+            margin: 48px auto 0 auto;
+            background: rgba(255,255,255,0.97);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(127,188,255,0.13);
+            padding: 36px 24px 32px 24px;
+            position: relative;
+            z-index: 2;
+        }
+        .details-main img {
+            width: 100%;
+            max-width: 340px;
+            border-radius: 12px;
+            margin: 0 auto 18px auto;
+            display: block;
+            box-shadow: 0 2px 12px rgba(127,188,255,0.13);
+        }
+        .details-main h1 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #007bff 40%, #ffb3c6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .details-main h2 {
+            font-size: 1.2rem;
+            margin: 18px 0 8px 0;
+            color: #007bff;
+        }
+        .details-main ol {
+            padding-left: 20px;
+        }
+        .details-main li {
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 18px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 22px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #0056b3;
+        }
+        .custom-cooking-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .bg-illustration {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: auto;
+            z-index: -1;
+        }
+        .hand-drawn-utensils {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+        .utensil {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .floating-foods {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+        .food {
+            font-size: 24px;
+            display: inline-block;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translatey(0);
+            }
+            50% {
+                transform: translatey(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="animated-shape animated-shape1"></div>
+        <div class="animated-shape animated-shape2"></div>
+        <div class="animated-shape animated-shape3"></div>
+    </div>
+    <div class="custom-cooking-bg">
+        <svg class="bg-illustration" width="100%" height="100%" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fffbe7" fill-opacity="1" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+        </svg>
+        <div class="hand-drawn-utensils">
+            <span class="utensil spoon"></span>
+            <span class="utensil fork"></span>
+            <span class="utensil knife"></span>
+        </div>
+        <div class="floating-foods">
+            <span class="food food-egg">🥚</span>
+            <span class="food food-tomato">🍅</span>
+            <span class="food food-bread">🍞</span>
+            <span class="food food-cheese">🧀</span>
+            <span class="food food-carrot">🥕</span>
+        </div>
+    </div>
+    <main class="details-main custom-cooking-theme" id="detailsMain">
+        <button class="back-btn" onclick="window.location.href='recipe.html'">&larr; Back</button>
+        <div id="detailsContent">Loading...</div>
+    </main>
+    <script src="recipe-details.js"></script>
+</body>
+</html>

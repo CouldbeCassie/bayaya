@@ -1,100 +1,43 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="placeholder.css">
-    <title>Choice</title>
-    <link rel="icon" href="CSS/come.png" type="image/x-icon">
+    <title>Cassaint</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
-<body class="void">
-    <header>
+<body>
+    <div class="animated-bg">
+        <div class="animated-shape animated-shape1"></div>
+        <div class="animated-shape animated-shape2"></div>
+        <div class="animated-shape animated-shape3"></div>
+    </div>
+    <header class="portfolio-header">
+        <h1 style="background:linear-gradient(90deg,#007bff 40%,#ffb3c6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+            Cassaint Portfolio
+        </h1>
+        <p class="portfolio-desc">
+            Welcome to my portfolio! Here you can find some of my projects and works that I have done.<br>
+            Feel free to explore and get in touch if you have any questions or feedback.
+        </p>
+        <a href="contact.html" class="contact-link">Contact Me</a>
     </header>
     <main>
-        <div>
-            <a href="recipe.html">
-                <div class="button">
-                </div>
-            </a>
-        </div>
-        <section class="doors">
-            <div class="door2" id="door2" onmouseover="playSound('sounds/b(door1).mp3')" onmouseout="stopSound()" onclick="zoomAndNavigate('door2', 'strg.html')"></div>
-            <div class="door3" id="door3" onmouseover="playSound('sounds/door3.mp3')" onmouseout="stopSound()" onclick="zoomAndNavigate('door3', 'dea.html')"></div>
-            <div class="door" id="door1" onmouseover="playSound('sounds/cdoor2.mp3')" onmouseout="stopSound()" onclick="zoomAndNavigate('door1', 'limbo.html')"></div>
+        <section class="portfolio-grid">
+            <div class="portfolio-card">
+                <img src="/images/portofolio/recipe finder images/2kekt0kd.png" alt="Recipe Finder">
+                <h2>Recipe Finder</h2>
+                <p>Unable to think of something to cook with what you got home? Find recipes by listing ingredients and get different recipes on what to cook with listed items. Using Spoonacular API.</p>
+                <a href="recipe.html">View Project</a>
+            </div>
+            <div class="portfolio-card">
+                <img src="mailbox.png" alt="Mail Letter Box">
+                <h2>Mail Letter Box</h2>
+                <p>A playful interactive mailbox. Tap to open and see a special message!</p>
+                <a href="mailbox.html">View Project</a>
+            </div>
         </section>
     </main>
-    <audio id="backgroundAudio" src="sounds/ambiance.mp3" loop></audio>
-
-    <script>
-        let hoverAudio = null;
-
-        function playSound(soundFile) {
-            if (hoverAudio) {
-                hoverAudio.pause();
-                hoverAudio.currentTime = 0;
-            }
-            hoverAudio = new Audio(soundFile);
-            hoverAudio.volume = 0.2; 
-            hoverAudio.play();
-        }
-
-        function stopSound() {
-            if (hoverAudio) {
-                hoverAudio.pause();
-                hoverAudio.currentTime = 0;
-                hoverAudio = null;
-            }
-        }
-
-        function playBackgroundSound() {
-            var backgroundAudio = document.getElementById('backgroundAudio');
-            backgroundAudio.volume = 0.2; // Set background volume (0.0 to 1.0)
-            backgroundAudio.play();
-        }
-
-        function playClickSound() {
-            var clickAudio = new Audio('sounds/enteringadoor.mp3');
-            clickAudio.volume = 0.2;
-            clickAudio.play();
-        }
-
-        function zoomAndNavigate(doorId, url) {
-            playClickSound();
-            stopSound(); // Stop hover sound when clicking
-            var door = document.getElementById(doorId);
-            door.classList.add('zoom');
-            door.style.transform = 'scale(3.6)';
-            setTimeout(function() {
-                window.location.href = url;
-            }, 2300); 
-        }
-
-        // Add an event listener for user interaction to play background sound
-        document.addEventListener('click', playBackgroundSound);
-
-        function playRandomAudio() {
-    const audioFiles = ['sounds/1.mp3', 'sounds/2.mp3', 'sounds/3.mp3']; // Replace with your audio file paths
-    const randomIndex = Math.floor(Math.random() * audioFiles.length);
-    const audio = new Audio(audioFiles[randomIndex]);
-    audio.volume = 1; 
-    console.log(`Playing: ${audioFiles[randomIndex]}`); // Log which audio file is being played
-    audio.play().catch(error => console.error('Audio playback failed:', error));
-}
-
-function startPlayingSounds() {
-    setInterval(playRandomAudio, Math.random() * 6000 + 9000); // Random interval between 6 and 9 seconds
-}
-
-startPlayingSounds();
-
-// Add this script to your webpage
-window.addEventListener("pageshow", function(event) {
-  if (event.persisted) {
-    // Force a reload if the page is loaded from the browser's cache
-    window.location.reload();
-  }
-});
-
-    </script>
 </body>
 </html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+            overflow-x: hidden;
+        }
+        .contact-bg-art {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .contact-bg-art .shape1 {
+            position: absolute; left: -80px; top: -60px; width: 320px; height: 320px;
+            background: radial-gradient(circle at 60% 40%, #bfcfff 0%, #e0e7ff 100%);
+            border-radius: 50%; opacity: 0.18;
+            filter: blur(8px);
+        }
+        .contact-bg-art .shape2 {
+            position: absolute; right: -60px; bottom: -80px; width: 260px; height: 260px;
+            background: radial-gradient(circle at 40% 60%, #ffb3c6 0%, #f8fafc 100%);
+            border-radius: 50%; opacity: 0.13;
+            filter: blur(10px);
+        }
+        .contact-hero {
+            margin-top: 70px;
+            margin-bottom: 18px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .contact-hero h1 {
+            font-size: 2.6rem;
+            background: linear-gradient(90deg, #007bff 40%, #ffb3c6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .contact-hero p {
+            color: #444;
+            font-size: 1.18rem;
+            margin-bottom: 0;
+            letter-spacing: 0.5px;
+        }
+        .contact-form-minimal {
+            background: none;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            max-width: 420px;
+            width: 94vw;
+            margin: 0 auto 32px auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            z-index: 2;
+        }
+        .contact-form-minimal label {
+            font-weight: 700;
+            color: #007bff;
+            margin-bottom: 6px;
+            display: block;
+            letter-spacing: 0.5px;
+        }
+        .contact-form-minimal input, .contact-form-minimal textarea {
+            width: 100%;
+            padding: 15px 18px;
+            margin-bottom: 20px;
+            border: 2px solid #e0e7ff;
+            border-radius: 14px;
+            font-size: 1.13rem;
+            background: #f8f9fa;
+            resize: vertical;
+            transition: border 0.2s, box-shadow 0.2s;
+            box-shadow: none;
+        }
+        .contact-form-minimal input:focus, .contact-form-minimal textarea:focus {
+            border: 2px solid #007bff;
+            box-shadow: 0 2px 16px rgba(127,188,255,0.13);
+        }
+        .contact-form-minimal button {
+            width: 100%;
+            padding: 16px 0;
+            background: linear-gradient(90deg, #007bff 60%, #ffb3c6 100%);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.22rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.13s;
+            margin-top: 8px;
+            letter-spacing: 1px;
+            box-shadow: none;
+        }
+        .contact-form-minimal button:hover {
+            background: linear-gradient(90deg, #ffb3c6 40%, #007bff 100%);
+            transform: scale(1.03);
+        }
+        .form-success {
+            color: #28a745;
+            margin-top: 18px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.13rem;
+        }
+        @media (max-width: 600px) {
+            .contact-form-minimal { padding: 0; }
+            .contact-hero h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-bg-art">
+        <div class="shape1"></div>
+        <div class="shape2"></div>
+    </div>
+    <a href="index.html" style="position:fixed;top:18px;left:18px;font-weight:700;color:#007bff;text-decoration:none;font-size:1.1rem;z-index:10;">← Home</a>
+    <div class="contact-hero">
+        <h1>Contact Me</h1>
+        <p>Let's connect! Send your message or feedback below.<br>I'll get back to you soon.</p>
+    </div>
+    <form action="https://api.web3forms.com/submit" method="POST" id="contact-form" class="contact-form-minimal">
+        <input type="hidden" name="access_key" value="f2a19a6c-95b0-4efc-a916-b526bb33070e" />
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required>
+        <label for="email">E-post</label>
+        <input type="email" name="email" id="email" required>
+        <label for="message">Message/Feedback</label>
+        <textarea name="message" id="message" rows="5" required></textarea>
+        <button type="submit">Send</button>
+    </form>
+    <p class="form-success" id="form-success" style="display:none;">✅ Message has successfully been sent!</p>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("name").value = localStorage.getItem("user_name") || "";
+      document.getElementById("email").value = localStorage.getItem("user_email") || "";
+    });
+    document.getElementById("contact-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      fetch(form.action, { method: "POST", body: data }).then(() => {
+        document.getElementById("form-success").style.display = "block";
+        form.reset();
+      });
+    });
+    </script>
+</body>
+</html>
+<!-- This is a simple contact page with a form to submit user details. -->
+<!-- The form uses the Web3Forms API to send the data. -->
