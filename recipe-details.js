@@ -20,7 +20,6 @@ function renderRecipeDetails(data) {
         <ul>${data.extendedIngredients.map(ing => `<li>${ing.original}</li>`).join('')}</ul>
         <h2>Instructions</h2>
         ${stepsHtml}
-        <a href="${data.sourceUrl}" target="_blank" style="display:inline-block;margin-top:10px;color:#007bff;">Source &rarr;</a>
     `;
 }
 

@@ -1,43 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cassaint</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cassaint</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div class="animated-bg">
-        <div class="animated-shape animated-shape1"></div>
-        <div class="animated-shape animated-shape2"></div>
-        <div class="animated-shape animated-shape3"></div>
-    </div>
-    <header class="portfolio-header">
-        <h1 style="background:linear-gradient(90deg,#007bff 40%,#ffb3c6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
-            Cassaint Portfolio
-        </h1>
-        <p class="portfolio-desc">
-            Welcome to my portfolio! Here you can find some of my projects and works that I have done.<br>
-            Feel free to explore and get in touch if you have any questions or feedback.
+  <!-- Header/Nav -->
+  <header class="site-header">
+    <a class="header-logo">Cassaint<span>.</span></a>
+    <nav class="main-nav">
+      <a class="nav-item" href="#hero">Home</a>
+      <a class="nav-item" href="#services">Services</a>
+      <a class="nav-item" href="#projects">Projects</a>
+      <a class="nav-item" href="#contact">Contact</a>
+    </nav>
+  </header>
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="hero-content">
+      <div class="hero-left">
+        <h3 class="hero-greeting">Hi, I'm Cass!</h3>
+        <h1 class="hero-title">Web <span>Developer</span></h1>
+        <p class="hero-desc">
+          I am a passionate and creative web developer. I create websites for businesses and individuals who want a beautiful, functional, and easy-to-maintain web presence. My focus is on clean code, great user experience, and modern visual design.
         </p>
-        <a href="contact.html" class="contact-link">Contact Me</a>
-    </header>
-    <main>
-        <section class="portfolio-grid">
-            <div class="portfolio-card">
-                <img src="/images/portofolio/recipe finder images/2kekt0kd.png" alt="Recipe Finder">
-                <h2>Recipe Finder</h2>
-                <p>Unable to think of something to cook with what you got home? Find recipes by listing ingredients and get different recipes on what to cook with listed items. Using Spoonacular API.</p>
-                <a href="recipe.html">View Project</a>
-            </div>
-            <div class="portfolio-card">
-                <img src="mailbox.png" alt="Mail Letter Box">
-                <h2>Mail Letter Box</h2>
-                <p>A playful interactive mailbox. Tap to open and see a special message!</p>
-                <a href="mailbox.html">View Project</a>
-            </div>
-        </section>
-    </main>
+        <a href="#projects" class="cta-main">View My Work <i class="fa-solid fa-arrow-down"></i></a>
+      </div>
+    </div>
+    <div class="scroll-down-cue"><i class="fa-solid fa-chevron-down"></i></div>
+  </section>
+  <!-- Services Section -->
+  <section id="services" class="services-section">
+    <h2 class="section-title">What I Do</h2>
+    <div class="services-grid">
+      <div class="service-card"><i class="fa-solid fa-laptop-code"></i><h3>Web Development</h3><p>Modern, responsive websites and web apps built for performance and beauty.</p></div>
+      <div class="service-card"><i class="fa-solid fa-palette"></i><h3>UI/UX Design</h3><p>Intuitive, user-centered design for delightful digital experiences.</p></div>
+      <div class="service-card"><i class="fa-solid fa-mobile-alt"></i><h3>Mobile Friendly</h3><p>Every project is crafted to look and work great on any device.</p></div>
+      <div class="service-card"><i class="fa-solid fa-rocket"></i><h3>Performance</h3><p>Fast load times, smooth interactions, and SEO best practices.</p></div>
+    </div>
+  </section>
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-preview">
+      <div class="project-card">
+        <a href="recipe.html" class="project-link" tabindex="0">
+          <img src="images/portofolio/recipe finder images/2kekt0kd.png" alt="Recipe Finder">
+          <h3>Recipe Finder</h3>
+        </a>
+      </div>
+      <div class="project-card">
+        <a href="restorant/kitty.html" class="project-link" tabindex="0">
+          <img src="images/portofolio/restorant images/kitty.png" alt="Kitty Restorant">
+          <h3>Kitty Restorant</h3>
+        </a>
+      </div>
+      <!-- Add more featured projects here -->
+    </div>
+    <a href="portfolio.html" class="cta-secondary">See Full Portfolio</a>
+  </section>
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <h2 class="section-title">Let's Work Together</h2>
+    <p class="contact-desc">Ready to start your project or have a question? Reach out and let's build something great!</p>
+    <a href="contact.html" class="cta-main">Contact Me</a>
+  </section>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Cassaint. All rights reserved.</p>
+  </footer>
 </body>
+
 </html>

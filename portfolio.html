@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Portfolio Header -->
+  <header class="site-header">
+    <a class="header-logo">Cassaint<span>.</span></a>
+    <nav class="main-nav">
+      <a class="nav-item" href="index.html">Home</a>
+      <a class="nav-item" href="portfolio.html">Portfolio</a>
+      <a class="nav-item" href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <div class="portfolio-header">
+      <h1>My Projects</h1>
+    </div>
+    <div class="portfolio-categories">
+      <button class="portfolio-category active" data-type="all">All</button>
+      <button class="portfolio-category" data-type="web">Web Apps</button>
+      <button class="portfolio-category" data-type="fun">Fun</button>
+    </div>
+    <div class="portfolio-grid" id="portfolioGrid">
+      <!-- Cards will be injected by JS -->
+    </div>
+  </main>
+  <script>
+    // Project data
+    const projects = [
+      {
+        title: 'Recipe Finder',
+        type: 'web',
+        img: 'images/portofolio/recipe finder images/2kekt0kd.png',
+        desc: 'A playful, responsive recipe search app with ingredient filtering and a custom cooking theme.',
+        link: 'recipe.html'
+      },
+      {
+        title: 'Restorant',
+        type: 'web',
+        img: 'images/portofolio/restorant images/kitty.png',
+        desc: 'A modern restaurant menu and cart app with category filtering and a beautiful UI.',
+        link: 'restorant/kitty.html'
+      }
+      // Add more projects here as needed
+    ];
+    const grid = document.getElementById('portfolioGrid');
+    const buttons = document.querySelectorAll('.portfolio-category');
+    function renderProjects(type) {
+      grid.innerHTML = '';
+      projects.filter(p => type === 'all' || p.type === type).forEach(project => {
+        const card = document.createElement('a');
+        card.className = 'portfolio-card';
+        card.href = project.link;
+        card.tabIndex = 0;
+        card.innerHTML = `
+          <img src="${project.img}" alt="${project.title}">
+          <h2>${project.title}</h2>
+          <p>${project.desc}</p>
+          <span class="portfolio-card-link">View Project &rarr;</span>
+        `;
+        grid.appendChild(card);
+      });
+    }
+    buttons.forEach(btn => {
+      btn.onclick = function() {
+        document.querySelector('.portfolio-category.active').classList.remove('active');
+        btn.classList.add('active');
+        renderProjects(btn.dataset.type);
+      };
+    });
+    renderProjects('all');
+  </script>
+</body>
+</html>

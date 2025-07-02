@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restorant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="resto-header">
+            <div class="resto-logo">
+                <img src="images/kitty.png" alt="Kitty Chef" class="logo-img">
+                <span class="logo-text">Kitty Restorant</span>
+            </div>
+            <div class="shopping">
+                <img src="images/shopping.svg" alt="Cart">
+                <span class="quantity">0</span>
+            </div>
+        </header>
+        <section class="welcome-banner premium-banner">
+            <h2>Welcome to Kitty Restorant</h2>
+            <p>Gourmet meals, playful vibes, and a chef with whiskers. Browse our menu and order with a tap!</p>
+            <h6>This is a demo. No real purchases.</h6>
+        </section>
+        <nav class="menu-categories">
+            <button class="category-btn" data-category="all">All</button>
+            <button class="category-btn" data-category="starters">Starters</button>
+            <button class="category-btn" data-category="main course">Main Course</button>
+            <button class="category-btn" data-category="desserts">Desserts</button>
+            <button class="category-btn" data-category="beverages">Beverages</button>
+            <button class="category-btn" data-category="kids menu">Kids Menu</button>
+        </nav>
+        <main>
+            <div class="list"> <!-- Menu items injected here --> </div>
+        </main>
+        <aside class="card">
+            <h1>Your Order</h1>
+            <ul class="listCard"></ul>
+            <div class="checkOut">
+                <div class="total">Total: 0 KR</div>
+                <div class="closeShopping">Cancel Order?</div>
+            </div>
+        </aside>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

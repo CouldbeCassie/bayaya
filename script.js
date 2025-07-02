@@ -29,13 +29,13 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
         showLoadingSpinner();
+        // Wait 2.5s before floating up and fetching
         setTimeout(() => {
+            if(mainCenter && !mainCenter.classList.contains('floated')) {
+                mainCenter.classList.add('floated');
+            }
             fetchRecipes(ingredients);
-        }, 800); // Shorter fake loading delay
-        // Animate float up
-        if(mainCenter && !mainCenter.classList.contains('floated')) {
-            mainCenter.classList.add('floated');
-        }
+        }, 2500);
     });
 
     function showLoadingSpinner() {
