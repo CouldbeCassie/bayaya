@@ -22,7 +22,8 @@
       <h1>Contact</h1>
       <p>Let's get in touch! Fill out the form below and I'll get back to you soon.</p>
     </div>
-    <form class="contact-container" autocomplete="off">
+    <form class="contact-container" autocomplete="off" method="POST" action="https://api.web3forms.com/submit">
+      <input type="hidden" name="access_key" value="f2a19a6c-95b0-4efc-a916-b526bb33070e">
       <label for="name">Name</label>
       <input type="text" id="name" name="name" required>
       <label for="email">Email</label>
@@ -34,7 +35,6 @@
         <label for="offerToggle" style="margin:0;">Request an Offer as a Job</label>
       </div>
       <div class="offer-details" id="offerDetails" style="display:none;">
-       <!--<p>alterntive option: fiverr</p>--> 
         <label for="offerType">Type of Request</label>
         <select id="offerType" name="offerType">
           <option value="">Select type...</option>
@@ -54,27 +54,19 @@
     <p>&copy; 2025 Cassaint. All rights reserved.</p>
   </footer>
   <script>
-    // Simple form handler for demo
-    document.querySelector('form').onsubmit = function(e) {
-      e.preventDefault();
-      // Show popup
-      const popup = document.createElement('div');
-      popup.className = 'contact-popup';
-      popup.innerHTML = `<div class="contact-popup-inner"><h3>Request Sent!</h3><p>Thank you for your message. Replies are typically sent within 12-24 hours.</p><button id="closePopupBtn">OK</button></div>`;
-      document.body.appendChild(popup);
-      document.getElementById('closePopupBtn').onclick = function() {
-        popup.remove();
-      };
-      this.reset();
-      document.getElementById('offerDetails').classList.remove('active');
-    };
     // Offer toggle logic
     document.getElementById('offerToggle').addEventListener('change', function() {
       const details = document.getElementById('offerDetails');
       if(this.checked) {
         details.style.display = 'flex';
+        Array.from(details.querySelectorAll('input, select, textarea')).forEach(el => {
+          el.disabled = false;
+        });
       } else {
         details.style.display = 'none';
+        Array.from(details.querySelectorAll('input, select, textarea')).forEach(el => {
+          el.disabled = true;
+        });
       }
     });
     // On page load, disable offerDetails inputs
