@@ -36,15 +36,15 @@
       </div>
       <div class="offer-details" id="offerDetails" style="display:none;">
         <label for="offerType">Type of Request</label>
-        <select id="offerType" name="offerType">
+        <select id="offerType" name="offerType" disabled>
           <option value="">Select type...</option>
           <option value="business">Business</option>
           <option value="personal">Personal</option>
         </select>
         <label for="offerDesc">Describe your project or job offer</label>
-        <textarea id="offerDesc" name="offerDesc" rows="3" placeholder="Describe the job, project, or offer details..."></textarea>
+        <textarea id="offerDesc" name="offerDesc" rows="3" placeholder="Describe the job, project, or offer details..." disabled></textarea>
         <label for="offerAmount">Your Offer (optional)</label>
-        <input type="number" id="offerAmount" name="offerAmount" min="0" step="any" placeholder="Amount in any currency">
+        <input type="number" id="offerAmount" name="offerAmount" min="0" step="any" placeholder="Amount in any currency" disabled>
       </div>
       <button type="submit">Send</button>
       <div class="success" style="display:none;">Thank you! Your message has been sent.</div>
