@@ -134,4 +134,44 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(() => { modal.style.display = "none"; }, 350);
         }, 1400);
     }
+
+    // --- Mobile Nav Logic ---
+    const hamburger = document.getElementById('hamburgerMenu');
+    const mainNav = document.getElementById('mainNav');
+    const closeNav = document.getElementById('closeNav');
+
+    function openNav() {
+        mainNav.classList.add('open');
+        document.body.classList.add('nav-open');
+        // Focus close button for accessibility
+        if (closeNav) closeNav.focus();
+    }
+    function closeNavMenu() {
+        mainNav.classList.remove('open');
+        document.body.classList.remove('nav-open');
+        // Return focus to hamburger
+        if (hamburger) hamburger.focus();
+    }
+    if (hamburger && mainNav) {
+        hamburger.addEventListener('click', openNav);
+        hamburger.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') openNav();
+        });
+    }
+    if (closeNav) {
+        closeNav.addEventListener('click', closeNavMenu);
+        closeNav.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') closeNavMenu();
+        });
+    }
+    // Close nav when clicking a link (mobile UX)
+    if (mainNav) {
+        mainNav.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', closeNavMenu);
+        });
+    }
+    // Close nav on ESC
+    document.addEventListener('keydown', function(e) {
+        if (mainNav.classList.contains('open') && e.key === 'Escape') closeNavMenu();
+    });
 });

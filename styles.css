@@ -4,7 +4,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: 5px;
   font-family: 'Inter', Arial, sans-serif;
 }
 
@@ -39,6 +39,8 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #fff;
+  text-decoration: none !important;
+  border-bottom: none !important;
 }
 .header-logo span {
   font-size: 2.5rem;
@@ -278,46 +280,182 @@ body {
 .project-card img {
   border-radius: 1em 1em 0 0;
 }
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto 3rem auto;
+  padding: 3rem 0 3rem 0;
+  background: none;
+  max-width: 600px;
+}
+.contact-section .section-title {
+  margin-bottom: 1.2rem;
+  text-align: center;
+  width: 100%;
+}
+.contact-section .contact-desc {
+  margin-bottom: 1.5rem;
+  color: #bbb;
+  font-size: 1.1rem;
+  text-align: center;
+  width: 100%;
+}
+.contact-section .cta-main {
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  float: none;
+}
 @media (max-width: 900px) {
-  .portfolio-header h1 {
+  .site-header, header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.2rem 4vw 0.8rem 4vw;
+    gap: 0.5rem;
+  }
+  .main-nav, nav {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .hero-content {
+    flex-direction: column;
+    min-height: 40vh;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  .hero-left {
+    width: 100%;
+  }
+  .section-title {
     font-size: 1.5rem;
   }
-  .portfolio-grid {
+  .services-grid, .projects-preview {
     gap: 1.2rem;
+    grid-template-columns: 1fr 1fr;
   }
-  .portfolio-card {
-    padding: 1rem 0.7rem 0.7rem 0.7rem;
-    border-radius: 0.7em;
+}
+@media (max-width: 700px) {
+  .main-nav, nav {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.7rem;
+    position: static;
+    background: none;
+    box-shadow: none;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
   }
-  .portfolio-card img {
-    height: 120px;
-    border-radius: 0.7em;
+  .nav-item {
+    font-size: 0.95rem;
+    padding: 0.18em 0.3em;
+  }
+  .header-logo {
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 701px) {
+  .main-nav .mobile-logo {
+    display: none !important;
   }
 }
 @media (max-width: 600px) {
-  .portfolio-header {
-    margin: 1.2rem 0 0.7rem 0;
+  html {
+    font-size: 14px;
   }
-  .portfolio-categories {
+  .site-header, header {
+    padding: 0.7rem 2vw 0.7rem 2vw;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 0.5rem;
+  }
+  .header-logo {
+    font-size: 1.05rem;
+  }
+  .main-nav, nav {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .nav-item {
+    font-size: 0.82rem;
+    padding: 0.12em 0.18em;
+    margin: 0 0.1em;
+  }
+  .section-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.7rem;
+  }
+  .hero-section, .services-section, .projects-section, .contact-section {
+    padding: 0 0.5vw;
     margin-bottom: 1.2rem;
+    max-width: 100vw;
   }
-  .portfolio-category {
-    padding: 0.5em 1.2em;
-    font-size: 1rem;
-    border-radius: 1em;
+  .hero-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    min-height: unset;
   }
-  .portfolio-grid {
+  .hero-left {
+    width: 100%;
+  }
+  .service-card, .project-card {
+    padding: 1rem 0.7rem 0.7rem 0.7rem;
+    border-radius: 0.6em;
+  }
+  .project-card img {
+    border-radius: 0.6em 0.6em 0 0;
+  }
+  .projects-preview, .services-grid {
     grid-template-columns: 1fr;
     gap: 0.7rem;
-    padding: 0 1vw;
   }
-  .portfolio-card {
-    padding: 0.7rem 0.2rem 0.7rem 0.2rem;
-    border-radius: 0.7em;
+  .footer {
+    font-size: 0.9rem;
+    padding: 1rem 0 0.7rem 0;
   }
-  .portfolio-card img {
-    height: 90px;
-    border-radius: 0.7em;
+}
+
+/* --- MOBILE NAVIGATION (HAMBURGER) --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  z-index: 1001;
+  margin-left: 1rem;
+}
+.hamburger span {
+  display: block;
+  width: 2rem;
+  height: 0.25rem;
+  margin: 0.3rem 0;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+@media (max-width: 700px) {
+  .main-nav, nav {
+    gap: 1rem;
+  }
+  .nav-item {
+    font-size: 0.95rem;
+    padding: 0.18em 0.3em;
+  }
+  .header-logo {
+    font-size: 1.2rem;
   }
 }

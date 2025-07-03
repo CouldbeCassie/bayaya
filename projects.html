@@ -8,13 +8,23 @@
 </head>
 <body>
   <!-- Portfolio Header -->
-  <header class="site-header">
-    <a class="header-logo">Cassaint<span>.</span></a>
-    <nav class="main-nav">
+ <header class="site-header">
+    <a class="header-logo" href="index.html">Cassaint<span>.</span></a>
+    <div class="hamburger" id="hamburgerMenu" aria-label="Open navigation" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="main-nav" id="mainNav" tabindex="-1">
+      <div class="mobile-nav-header">
+        <div class="close-nav" id="closeNav" aria-label="Close navigation" tabindex="0">
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+      </div>
       <a class="nav-item" href="index.html">Home</a>
-      <a class="nav-item" href="portfolio.html">Portfolio</a>
       <a class="nav-item" href="contact.html">Contact</a>
     </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
   </header>
   <main>
     <div class="portfolio-header">
@@ -30,6 +40,49 @@
     </div>
   </main>
   <script>
+    // Hamburger menu toggle and mobile nav logic
+    const hamburger = document.getElementById('hamburgerMenu');
+    const mainNav = document.getElementById('mainNav');
+    const closeNav = document.getElementById('closeNav');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function openNav() {
+      mainNav.classList.add('open');
+      document.body.classList.add('nav-open');
+      if (navOverlay) navOverlay.style.display = 'block';
+      if (closeNav) closeNav.focus();
+    }
+    function closeNavMenu() {
+      mainNav.classList.remove('open');
+      document.body.classList.remove('nav-open');
+      if (navOverlay) navOverlay.style.display = 'none';
+      if (hamburger) hamburger.focus();
+    }
+    if (hamburger && mainNav) {
+      hamburger.addEventListener('click', openNav);
+      hamburger.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') openNav();
+      });
+    }
+    if (closeNav) {
+      closeNav.addEventListener('click', closeNavMenu);
+      closeNav.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') closeNavMenu();
+      });
+    }
+    if (navOverlay) {
+      navOverlay.addEventListener('click', closeNavMenu);
+    }
+    // Close nav when clicking a link (mobile UX)
+    if (mainNav) {
+      mainNav.querySelectorAll('.nav-item').forEach(link => {
+        link.addEventListener('click', closeNavMenu);
+      });
+    }
+    // Close nav on ESC
+    document.addEventListener('keydown', function(e) {
+      if (mainNav.classList.contains('open') && e.key === 'Escape') closeNavMenu();
+    });
     // Project data
     const projects = [
       {

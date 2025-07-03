@@ -237,29 +237,34 @@ body {
 .card {
     position: fixed;
     top: 0;
-    right: -100vw;
-    width: 100vw;
+    right: 0;
+    width: 28vw;
     max-width: 420px;
-    background: rgba(255,255,255,0.97);
-    color: #643020;
+    min-width: 270px;
     height: 100vh;
-    transition: 0.5s;
-    padding: 32px 4vw 32px 4vw;
-    box-shadow: 0 8px 32px 0 rgba(60, 40, 20, 0.18);
+    background: rgba(255,255,255,0.7); /* glassy look, matches nav bar */
+    box-shadow: -4px 0 32px rgba(0,0,0,0.13);
+    border-radius: 2rem 0 0 2rem;
     z-index: 100;
-    border-radius: 0 0 0 32px;
+    transform: translateX(110%);
+    transition: transform 0.35s cubic-bezier(.77,0,.18,1);
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
-    backdrop-filter: blur(8px);
+    padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+    overflow-y: auto;
+    backdrop-filter: blur(12px) saturate(1.2);
 }
 
 .active .card {
-    right: 0;
+    transform: translateX(0);
 }
 
-.active .container {
-    transform: none;
+.active .container::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.18);
+    z-index: 99;
 }
 
 .card h1 {
@@ -320,10 +325,10 @@ body {
 }
 
 .cart-item-pro-img-wrap {
-    width: 44px;
-    height: 44px;
-    background: #f6d7b0;
-    border-radius: 8px;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 0.7rem;
+    background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -331,10 +336,10 @@ body {
 }
 
 .cart-item-pro-img {
-    width: 90%;
-    height: auto;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-    border-radius: 6px;
+    display: block;
 }
 
 .cart-item-pro-details {
@@ -495,18 +500,27 @@ body {
         border-radius: 6px;
     }
     .card {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
         width: 100vw;
         max-width: 100vw;
-        right: -100vw;
-        border-radius: 0 0 0 10px;
-        padding: 10px 1vw 10px 1vw;
+        min-width: 0;
+        height: 60vh;
+        border-radius: 1.2rem 1.2rem 0 0;
+        padding: 1rem 0.5rem 0.7rem 0.5rem;
+        transform: translateY(110%);
+        transition: transform 0.35s cubic-bezier(.77,0,.18,1);
+        z-index: 200;
     }
-    .closeShopping {
-        top: 8px;
-        right: 1vw;
-        width: 28px;
-        height: 28px;
-        font-size: 1rem;
+    .active .card {
+        transform: translateY(0);
+    }
+    .cart-item-pro-img-wrap {
+        width: 3rem;
+        height: 3rem;
     }
 }
 

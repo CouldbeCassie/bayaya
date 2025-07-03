@@ -20,8 +20,8 @@ closeShopping.addEventListener('click', () => {
 // Products List with Categories
 const products = [
     { id: 1, name: 'Clueless sea', image: '1.png', price: 120, category: 'starters' },
-    { id: 2, name: 'Chicken legs', image: '2.PNG', price: 410, category: 'starters' },
-    { id: 3, name: 'Fishsalad', image: '3.PNG', price: 590, category: 'starters' },
+    { id: 2, name: 'Chicken legs', image: '2.png', price: 410, category: 'starters' },
+    { id: 3, name: 'Fishsalad', image: '3.png', price: 590, category: 'starters' },
     { id: 4, name: 'Tomateo', image: '4.PNG', price: 150, category: 'starters' },
     { id: 5, name: 'Silly sallad', image: '5.PNG', price: 320, category: 'starters' },
     { id: 6, name: 'Pizza', image: '6.PNG', price: 120, category: 'main course' },
@@ -136,3 +136,16 @@ function changeQuantity(productId, change) {
         reloadCart();
     }
 }
+
+// Close cart when clicking outside the cart
+window.addEventListener('click', function(e) {
+    const card = document.querySelector('.card');
+    const shopping = document.querySelector('.shopping');
+    if (
+        body.classList.contains('active') &&
+        !card.contains(e.target) &&
+        !shopping.contains(e.target)
+    ) {
+        body.classList.remove('active');
+    }
+});
